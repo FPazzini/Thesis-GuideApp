@@ -53,8 +53,23 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const PippoStack = createStackNavigator({
+  Pippo: SettingsScreen
+})
+
+PippoStack.navigationOptions = {
+  tabBarLabel: 'Pippo',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'} 
+    />
+  )
+}
+
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  PippoStack
 });
