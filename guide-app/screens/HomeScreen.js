@@ -20,10 +20,11 @@ import {
 import { WebBrowser, Icon } from 'expo';
 import { MonoText } from '../components/StyledText';
 import TabBarIcon from '../components/TabBarIcon';
+import QRReader from './QRReader';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Avventura',
   };
 
   state = {
@@ -69,8 +70,7 @@ export default class HomeScreen extends React.Component {
   }
 
   buttonClicked () {
-    
-    //this.setState({ addOutline: !this.state.addOutline })
+    this.props.navigation.navigate('QRReader')
   }
 
   render() {
