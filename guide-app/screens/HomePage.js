@@ -26,52 +26,7 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
-  state = {
-    showInstrMsg: true,
-    qrPlot: 'introduction', // captured by the QR code reader
-    currentPlot: '',
-    plotCounter: 0,
-    phases: {
-      'introduction' : 'Inizia cosi\' la nostra avventura...',
-      'diet' : 'The diet is made of ...'
-    },
-    addOutline: true,
-  }
   
-  showInstructionMessage () {
-    if (this.state.showInstrMsg) {
-      return (
-        <View>
-          <Text style={styles.intrTextStyle}>
-            Cattura il primo codice QR
-          </Text>
-        </View>
-      )
-    } else {
-      return (
-        <View>
-          <Text style={styles.intrTextStyle}>
-            Variabile e' false
-          </Text>
-        </View> 
-      )
-    }
-  }
-
-  showPlot () {
-    if (this.state.qrPlot ===  Object.keys(this.state.phases)[this.state.plotCounter]) {
-      return (
-        <Text style={styles.plotStyle}>
-          {Object.values(this.state.phases)[this.state.plotCounter]}
-        </Text>
-      )
-    }
-  }
-
-  buttonClicked () {
-    
-    //this.setState({ addOutline: !this.state.addOutline })
-  }
 
   render() {
     return (

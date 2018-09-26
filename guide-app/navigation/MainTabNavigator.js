@@ -1,17 +1,34 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import Colors from '../constants/Colors.js'
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/SharksList';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
+const HomeStack = createStackNavigator(
+{
   Home: HomeScreen,
+  Links: LinksScreen
+},
+{
+  initialRouteName: 'Home',
+  /* The header config from HomeScreen is now here */
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: Colors.tintColor,
+    },
+    headerTintColor: Colors.noticeText,
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 });
 
 HomeStack.navigationOptions = {
+  title: 'title',
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -24,6 +41,7 @@ HomeStack.navigationOptions = {
       size={26}
     />
   ),
+  
 };
 
 const LinksStack = createStackNavigator({
@@ -73,7 +91,6 @@ PippoStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
   SettingsStack,
   PippoStack
 });
