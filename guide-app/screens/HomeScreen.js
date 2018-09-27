@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  FlatList
 } from 'react-native';
 import {
   Header,
@@ -15,12 +16,15 @@ import {
   Input,
   Spinner,
   Card,
-  CardSection
+  CardSection,
+  AdvancedCard,
 } from '../components/common'
 import { WebBrowser, Icon } from 'expo';
 import { MonoText } from '../components/StyledText';
 import TabBarIcon from '../components/TabBarIcon';
 import QRReader from './QRReader';
+
+const numCols = 1
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -36,9 +40,16 @@ export default class HomeScreen extends React.Component {
       'introduction' : 'Inizia cosi\' la nostra avventura...',
       'diet' : 'The diet is made of ...'
     },
+    pathElements: [
+      
+    ],
     addOutline: true,
   }
-  
+
+  componentWillMount () {
+    //this.evaluateLevel('primo')
+  }
+
   showInstructionMessage () {
     if (this.state.showInstrMsg) {
       return (
@@ -60,22 +71,85 @@ export default class HomeScreen extends React.Component {
   }
 
   showPlot () {
-    if (this.state.qrPlot ===  Object.keys(this.state.phases)[this.state.plotCounter]) {
+    /*if (this.state.qrPlot ===  Object.keys(this.state.phases)[this.state.plotCounter]) {
       return (
         <Text style={styles.plotStyle}>
           {Object.values(this.state.phases)[this.state.plotCounter]}
         </Text>
       )
-    }
+    }*/
   }
 
   buttonClicked () {
-    this.props.navigation.navigate('QRReader')
+    this.props.navigation.navigate('QRReader', {
+      evaluateLevel: this.evaluateLevel
+    })
   }
+
+  evaluateLevel = (value) => {
+    var lev = value
+    alert(lev)
+    var item;
+    if (lev === 'primo') {
+      item = {
+        id: '1',
+        avatar: require('../assets/images/squalo-bianco.jpg'), 
+        description: 'primo'
+      }
+    } else if (lev === 'secondo') {
+      item = {
+        id: '2',
+        avatar: require('../assets/images/squalo-toro.jpg'),
+        description: 'secondo'
+      }
+    }
+    var levelsList = [...this.state.pathElements, item] 
+      this.setState({ pathElements: levelsList })
+  }
+
+  renderList = ({ item }) => {
+    return (
+      <View>
+        <AdvancedCard>
+          <TouchableHighlight
+            style={{ width: '100%', height: '100%' }}
+            underlayColor='lightgrey'
+          >
+            <View>
+              <View style={styles.innerViewStyle}>
+                <Image style={styles.image} source={item.avatar} />
+              </View>
+              <View style={styles.textViewStyle}>
+                <Text style={styles.descriptionStyle}>
+                  {item.description}
+                </Text>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </AdvancedCard>
+      </View>
+    );
+  }
+
+  showList () {
+    return (
+      <FlatList
+        data={this.state.pathElements}
+        renderItem={this.renderList}
+        numColumns={numCols}
+        keyExtractor={item => item.id}
+      />
+    )
+  }
+  
 
   render() {
     return (
       <View style={styles.container}>
+        <ScrollView>
+        <View style={{ width: '100%' }}>
+          {this.showList()}
+        </View>
         <View style={styles.viewInstrStyle}>
           {this.showInstructionMessage()}
         </View>
@@ -103,7 +177,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.viewPlotStyle}>
           {this.showPlot()}
         </View>
-        
+        </ScrollView>
       </View>
     );
   }
@@ -256,5 +330,22 @@ const styles = StyleSheet.create({
   },
   qrCodeButtonStyle: {
 
+  },
+
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'stretch',
+  },
+  innerViewStyle: {
+      width: '100%',
+      height: '80%'
+  },
+  descriptionStyle: {
+      fontSize: 20,
+      fontWeight: 'bold'
+  },
+  textViewStyle: {
+      alignItems: 'flex-start'
   },
 });

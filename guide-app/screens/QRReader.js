@@ -15,7 +15,7 @@ import { BarCodeScanner, Permissions } from 'expo';
 export default class QRReader extends Component {
 
     static navigationOptions = {
-        title: 'QRReader',
+        title: 'QR Reader',
       };
   state = {
     hasCameraPermission: null,
@@ -34,9 +34,23 @@ export default class QRReader extends Component {
   };
 
   _handleBarCodeRead = result => {
-    if (result.data !== this.state.lastScannedUrl) {
+    /*if (result.data !== this.state.lastScannedUrl) {
       LayoutAnimation.spring();
       this.setState({ lastScannedUrl: result.data });
+    }*/
+    var res = result.data
+    if (res !== this.state.lastScannedUrl) {
+        if (res === "http://www.salcarmall.com") {
+            this.setState({ lastScannedUrl: res })
+            this.props.navigation.state.params.evaluateLevel('primo')
+            this.props.navigation.setParams({ level: 'primo' })
+            this.props.navigation.goBack()
+        } else if (res === '3501179567242') {
+            this.setState({ lastScannedUrl: res })
+            this.props.navigation.state.params.evaluateLevel('secondo')
+            this.props.navigation.setParams({ level: 'secondo' })
+            this.props.navigation.goBack()
+        }
     }
   };
 
