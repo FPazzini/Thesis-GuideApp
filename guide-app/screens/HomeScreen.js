@@ -19,10 +19,12 @@ import {
   CardSection,
   AdvancedCard,
 } from '../components/common'
-import { WebBrowser, Icon } from 'expo';
+import { WebBrowser, Icon, Constants } from 'expo';
 import { MonoText } from '../components/StyledText';
+import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import QRReader from './QRReader';
+import PathItem from '../components/PathItem';
 
 const numCols = 1
 
@@ -40,23 +42,30 @@ export default class HomeScreen extends React.Component {
       'introduction' : 'Inizia cosi\' la nostra avventura...',
       'diet' : 'The diet is made of ...'
     },
+    addOutline: true,
     pathElements: [
       
     ],
-    addOutline: true,
+    showExplanation: true
   }
-
-  componentWillMount () {
-    //this.evaluateLevel('primo')
+ 
+  showExplanationText () {
+    if (this.state.showExplanation) {
+      return (
+        <Text style={styles.intrTextStyle}>
+          Cattura il codice QR
+        </Text>
+      )
+    } else {
+      return null
+    }
   }
 
   showInstructionMessage () {
     if (this.state.showInstrMsg) {
       return (
         <View>
-          <Text style={styles.intrTextStyle}>
-            Cattura il primo codice QR
-          </Text>
+          {this.showExplanationText()}
         </View>
       )
     } else {
@@ -88,45 +97,31 @@ export default class HomeScreen extends React.Component {
 
   evaluateLevel = (value) => {
     var lev = value
-    alert(lev)
     var item;
     if (lev === 'primo') {
       item = {
         id: '1',
         avatar: require('../assets/images/squalo-bianco.jpg'), 
-        description: 'primo'
+        description: 'Primo'
       }
     } else if (lev === 'secondo') {
       item = {
         id: '2',
-        avatar: require('../assets/images/squalo-toro.jpg'),
-        description: 'secondo'
+        avatar: require('../assets/images/squalo-bianco.jpg'),
+        description: 'Secondo'
       }
     }
     var levelsList = [...this.state.pathElements, item] 
-      this.setState({ pathElements: levelsList })
+    this.setState({ 
+      pathElements: levelsList,
+      showExplanation: this.state.showExplanation ? false : this.state.showExplanation
+    })
   }
 
   renderList = ({ item }) => {
     return (
       <View>
-        <AdvancedCard>
-          <TouchableHighlight
-            style={{ width: '100%', height: '100%' }}
-            underlayColor='lightgrey'
-          >
-            <View>
-              <View style={styles.innerViewStyle}>
-                <Image style={styles.image} source={item.avatar} />
-              </View>
-              <View style={styles.textViewStyle}>
-                <Text style={styles.descriptionStyle}>
-                  {item.description}
-                </Text>
-              </View>
-            </View>
-          </TouchableHighlight>
-        </AdvancedCard>
+        <PathItem item={item} />
       </View>
     );
   }
@@ -141,7 +136,6 @@ export default class HomeScreen extends React.Component {
       />
     )
   }
-  
 
   render() {
     return (
@@ -331,7 +325,12 @@ const styles = StyleSheet.create({
   qrCodeButtonStyle: {
 
   },
-
+  descriptionRowStyle: {
+    width: '60%',
+  },
+  textViewStyle: {
+    alignItems: 'flex-start'
+  },
   image: {
     width: '100%',
     height: '100%',
@@ -341,11 +340,22 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '80%'
   },
+  rowDescriptionStyle: {
+    flex: 1,
+    flexDirection: 'row'
+  },
   descriptionStyle: {
-      fontSize: 20,
-      fontWeight: 'bold'
+    color: 'black',
+    fontSize: 22,
+    textAlign: 'center',
+    padding: 10
   },
-  textViewStyle: {
-      alignItems: 'flex-start'
+  iconViewStyle: {
+    alignSelf: 'flex-end',
+    marginRight: 10,
+    fontSize: 25,
+    fontWeight: 'bold'
   },
+  
+  
 });
