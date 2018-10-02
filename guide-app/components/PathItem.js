@@ -69,26 +69,22 @@ class PathItem extends Component {
                         <View>
                             <View style={innerViewStyle}>
                                 <ImageBackground style={image} source={this.state.item.avatar}>
-                                    <CardButton onPress={this.testPress.bind(this)}>
-                                        Click!
-                                    </CardButton>
+                                    
                                 </ImageBackground>
+                            </View>
+                            <View style={{ width: '50%', alignSelf: 'flex-end', alignItems: 'flex-end', justifyContent: 'flex-end', paddingTop: 20, position: 'relative', zIndex: 1 }}>
+                                <CardButton 
+                                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                                    arrowName={'ios-arrow-round-forward'}    
+                                >
+                                    Click!
+                                </CardButton>
                             </View>
                             <View style={rowStyle}>
                                 <View style={descriptionViewStyle}>
                                     <MonoText style={descriptionStyle}>
                                         {this.state.item.description}
                                     </MonoText>
-                                </View>
-                                <View style={iconsViewStyle}>
-                                    <TouchableOpacity onPress={this.play.bind(this)} underlayColor=''>
-                                        <Ionicons 
-                                            style={iconStyle} 
-                                            name={this.state.icon}
-                                            size={40} 
-                                            color={Colors.tintColor}
-                                        />
-                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
@@ -112,12 +108,14 @@ const styles = {
     image: {
         width: '100%',
         height: '100%',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
     },
     descriptionViewStyle: {
         flex: 1,
-        width: '50%', 
+        width: '50%',
         alignItems: 'flex-start', 
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     iconsViewStyle: {
         flex: 1,

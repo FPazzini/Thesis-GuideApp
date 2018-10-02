@@ -16,8 +16,8 @@ const styles = {
     viewStyle: {
         flex: 1,
         width: deviceWidth - 5,
-        //height: deviceHeight / 3,
-        height: 250,
+        height: 270,
+        
         flexDirection: 'column',
 
 
@@ -26,6 +26,7 @@ const styles = {
         margin: 3,
         
         borderRadius: 10,
+        
         borderWidth: 1.5,
         borderColor: '#ddd',
         borderBottomWidth: 1,

@@ -41,12 +41,12 @@ export default class QRReader extends Component {
     var res = result.data
     LayoutAnimation.spring();
     if (res !== this.state.lastScannedUrl) {
-        if (res === "THXCJ27GZ[/11XH1BU2KU3J5314Z[XJJ34ME") {
+        if (res === "61W1DDPDETQVDO/O08A0N/J33JXBANT7GE/J") {
             this.setState({ lastScannedUrl: res })
             this.props.navigation.state.params.evaluateLevel('primo')
             this.props.navigation.setParams({ level: 'primo' })
             this.props.navigation.goBack()
-        } else if (res === '81Z/3ET0K/F34SPRQQ1U0TJWN0T8MFEM71C2') {
+        } else if (res === "J0FT7/JA/2FA3P[6Z/JO/K1YJQA[L/9C5TB") {
             this.setState({ lastScannedUrl: res })
             this.props.navigation.state.params.evaluateLevel('secondo')
             this.props.navigation.setParams({ level: 'secondo' })

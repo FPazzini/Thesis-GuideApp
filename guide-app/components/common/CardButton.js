@@ -2,29 +2,37 @@ import React from 'react'
 import {
     View,
     Text,
-    TouchableOpacity,
+    TouchableHighlight,
 } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
 
-const CardButton = ({ onPress }) => {
+const CardButton = ({ onPress, style, arrowName }) => {
     return (
-        <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={onPress}
+        <TouchableHighlight
+            style={[styles.buttonStyle, style]}
+            onPress={() => alert("pippo")}
+            underlayColor="#00786B"
         >
-            pippo
-        </TouchableOpacity>
+            <Ionicons 
+                name={arrowName}
+                size={35} 
+                color='white'
+            />
+        </TouchableHighlight>
     )
 }
 
 const styles = {
     buttonStyle: {
-        width: 75,
-        height: 75,
+        width: 60,
+        height: 60,
         
-        backgroundColor: 'orange',
+        backgroundColor: '#1B998B',
         borderColor: 'black',
         marginRight: 20,
-        borderRadius: 15
+        borderRadius: 100,
+        borderWidth:1, 
+        position: 'absolute'
     }
 }
 
