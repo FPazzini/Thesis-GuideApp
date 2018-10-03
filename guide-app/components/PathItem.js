@@ -29,6 +29,7 @@ class PathItem extends Component {
     }
 
     play () {
+        
         // Play button is actived
         if (this.state.playSelected) {
             this.setState({
@@ -46,6 +47,11 @@ class PathItem extends Component {
 
     testPress (elem) {
         console.log(elem) 
+    }
+
+    infoClicked () {
+        alert("Cliccato!")
+        this.props.navigation.navigate('InfoScreen')
     }
 
     render() {
@@ -74,10 +80,10 @@ class PathItem extends Component {
                             </View>
                             <View style={{ width: '50%', alignSelf: 'flex-end', alignItems: 'flex-end', justifyContent: 'flex-end', paddingTop: 20, position: 'relative', zIndex: 1 }}>
                                 <CardButton 
-                                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={() => this.props.infoButtonClicked(this.state.item)}
+                                    style={{ alignItems: 'center', justifyContent: 'center', position: 'absolute' }}
                                     arrowName={'ios-arrow-round-forward'}    
                                 >
-                                    Click!
                                 </CardButton>
                             </View>
                             <View style={rowStyle}>

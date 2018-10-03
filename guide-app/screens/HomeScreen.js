@@ -25,6 +25,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import QRReader from './QRReader';
 import PathItem from '../components/PathItem';
+import PathItemRow from '../components/PathItemRow'
 
 const numCols = 1
 
@@ -118,10 +119,15 @@ export default class HomeScreen extends React.Component {
     })
   }
 
+  infoClicked = (item) => {
+    alert(item.description)
+    this.props.navigation.navigate('InfoScreen')
+  }
+
   renderList = ({ item }) => {
     return (
       <View>
-        <PathItem item={item} />
+        <PathItem item={item} infoButtonClicked={card => this.infoClicked(card)} />
       </View>
     );
   }

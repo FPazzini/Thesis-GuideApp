@@ -4,7 +4,7 @@ import { View, Dimensions } from 'react-native'
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
-const AdvancedCard = (props) => {
+const CircularCard = (props) => {
     return (
         <View style={styles.viewStyle}>
             {props.children}
@@ -14,17 +14,24 @@ const AdvancedCard = (props) => {
 
 const styles = {
     viewStyle: {
+        flex: 1,
         width: 200,
         height: 200,
-        
-        backgroundColor: '#1B998B',
-        borderColor: 'black',
-        marginRight: 20,
         borderRadius: 100,
-        borderWidth:1, 
-        position: 'absolute'
+        
+        marginTop: 20,
+        marginLeft: 3,
+        margin: 3,
+        
+        borderWidth: 1.5,
+        borderColor: '#ddd',
+        borderBottomWidth: 1,
 
+        shadowColor: '#202020',
+        shadowOffset: { width: 0, height: 1},
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
     }
 }
 
-export { AdvancedCard }
+export { CircularCard }

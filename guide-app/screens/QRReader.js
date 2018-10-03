@@ -46,7 +46,7 @@ export default class QRReader extends Component {
             this.props.navigation.state.params.evaluateLevel('primo')
             this.props.navigation.setParams({ level: 'primo' })
             this.props.navigation.goBack()
-        } else if (res === "J0FT7/JA/2FA3P[6Z/JO/K1YJQA[L/9C5TB") {
+        } else if (res === "J0FT7/JA/2FA3P[6Z/JO/K1YJQ7A[L/8C5TB") {
             this.setState({ lastScannedUrl: res })
             this.props.navigation.state.params.evaluateLevel('secondo')
             this.props.navigation.setParams({ level: 'secondo' })

@@ -10,7 +10,7 @@ const CardButton = ({ onPress, style, arrowName }) => {
     return (
         <TouchableHighlight
             style={[styles.buttonStyle, style]}
-            onPress={() => alert("pippo")}
+            onPress={onPress}
             underlayColor="#00786B"
         >
             <Ionicons 
@@ -26,13 +26,15 @@ const styles = {
     buttonStyle: {
         width: 60,
         height: 60,
-        
+        marginRight: 20,
+        alignItems: 'center', 
+        justifyContent: 'center',
         backgroundColor: '#1B998B',
         borderColor: 'black',
-        marginRight: 20,
+        
         borderRadius: 100,
         borderWidth:1, 
-        position: 'absolute'
+        //position: 'absolute' //--> To de-comment if card-based layout.
     }
 }
 

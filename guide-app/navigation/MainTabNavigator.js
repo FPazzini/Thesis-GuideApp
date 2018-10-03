@@ -8,12 +8,14 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QRReaderScreen from '../screens/QRReader'
+import InfoSchedaScreen from '../screens/InfoScreen'
 
 const HomeStack = createStackNavigator(
 {
   Home: HomeScreen,
   Links: LinksScreen,
   QRReader: QRReaderScreen,
+  InfoScreen: InfoSchedaScreen,
 },
 {
   initialRouteName: 'Home',
@@ -67,6 +69,21 @@ const QRReaderStack = createStackNavigator({
 
 QRReaderStack.navigationOptions = {
   tabBarLabel: 'QRReader',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      size={26}
+    />
+  ),
+};
+
+const InfoScreenStack = createStackNavigator({
+  InfoScreen: InfoSchedaScreen,
+});
+
+InfoScreenStack.navigationOptions = {
+  tabBarLabel: 'SchedaScreen',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
