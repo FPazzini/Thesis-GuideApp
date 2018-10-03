@@ -120,8 +120,9 @@ export default class HomeScreen extends React.Component {
   }
 
   infoClicked = (item) => {
-    alert(item.description)
-    this.props.navigation.navigate('InfoScreen')
+    this.props.navigation.navigate('InfoScreen', {
+      cardID: item.id
+    })
   }
 
   renderList = ({ item }) => {
