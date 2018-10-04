@@ -29,7 +29,7 @@ import DetailsUpgrade from '../components/DetailsUpgrade'
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
-        title: 'Scheda',
+        header: null,
     };
     
     constructor (props) {
@@ -71,6 +71,17 @@ export default class InfoScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.viewTextStyle}>
+                    <Text style={styles.textStyle}>
+                        Opzione 1
+                    </Text>
+                    <Text style={styles.textStyle}>
+                        Opzione 2
+                    </Text>
+                    <Text style={styles.textStyle}>
+                        Opzione 3
+                    </Text>
+                </View>
                 <ScrollView>
                     <DetailsUpgrade item={this.state.currentItem} />
                 </ScrollView>
@@ -84,4 +95,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    textStyle: {
+        fontSize: 25,
+        color: 'blue',
+    },
+    viewTextStyle: {
+        flex: 1,
+        position: 'absolute',
+        bottom:0,
+        alignSelf:'flex-end',
+        padding: 10,
+        zIndex: 1,
+    }
 });

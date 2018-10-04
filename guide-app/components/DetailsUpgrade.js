@@ -5,17 +5,11 @@ import {
     Dimensions,
     Image,
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
 import { yellow } from 'ansi-colors';
 import {
     SectionButton
  } from './common/'
-
-const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
-
-const upperSection = deviceHeight / 2.5
-const bottomSection = (deviceHeight - upperSection) /2
+import DetailsSection from './DetailsSection'
 
 export default class DetailsUpgrade extends Component {
     
@@ -41,16 +35,17 @@ export default class DetailsUpgrade extends Component {
             blocksStyle,
             innerImageViewStyle,
             arrowDownStyle,
+            viewTextStyle,
+            textStyle,
         } = styles
         
         return (
             <View style={container}>
-                <View style={innerImageViewStyle}>
-                    <Image 
-                        style={imageStyle}
-                        source={this.state.item.img} 
-                    />
-                </View>
+                
+            
+                <DetailsSection imgPath={require('../assets/images/whiteshark.jpg')} />
+                <DetailsSection imgPath={require('../assets/images/whitesharkjumping.jpg')} />
+
             </View>
         )
     }
@@ -58,15 +53,20 @@ export default class DetailsUpgrade extends Component {
 
 const styles = {
     container: {
-        width: deviceWidth,
-        height: deviceHeight - 30,
+        flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#fff',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
-    imageStyle: {
+    textStyle: {
+        fontSize: 25,
+        color: 'blue',
+    },
+    viewTextStyle: {
         flex: 1,
-        resizeMode: 'cover'
-    },
+        position: 'absolute',
+
+        padding: 10,
+        zIndex: 1,
+    }
 }
