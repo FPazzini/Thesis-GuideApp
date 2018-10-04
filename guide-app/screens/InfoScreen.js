@@ -25,6 +25,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import PathItem from '../components/PathItem';
 import Details from '../components/Details'
+import DetailsUpgrade from '../components/DetailsUpgrade'
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
@@ -37,7 +38,7 @@ export default class InfoScreen extends React.Component {
             cardID: props.navigation.state.params.cardID,
             data: [{
                 id: 1,
-                img: require('../assets/images/squalo-bianco.jpg'),
+                img: require('../assets/images/whaleshark.jpg'),
             },
             {
                 id: 2,
@@ -71,7 +72,7 @@ export default class InfoScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-                    <Details item={this.state.currentItem} />
+                    <DetailsUpgrade item={this.state.currentItem} />
                 </ScrollView>
             </View>
         );
