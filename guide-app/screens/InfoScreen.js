@@ -24,6 +24,7 @@ import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import PathItem from '../components/PathItem';
+import Details from '../components/Details'
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
@@ -36,28 +37,30 @@ export default class InfoScreen extends React.Component {
             cardID: props.navigation.state.params.cardID,
             data: [{
                 id: 1,
-                img: 'squalo-bianco.jpg',
+                img: require('../assets/images/squalo-bianco.jpg'),
             },
             {
                 id: 2,
-                img: 'squalo-toro.jpg',
+                img: require('../assets/images/squalo-bianco.jpg'),
             },
           ],
           currentItem: {},
         }
     } 
 
-    componentDidMount () {
-        this.getData(this.state.cardID)
+    // Calling getData in componentWillMount.
+    componentWillMount () {
+        {this.getData(this.state.cardID)}
     }
 
+    // Function that verifies and sets the current item based on the cardID value received. 
     getData (id) {
         // Parsing string to int.
         switch (parseInt(id)) {
             case 1:
                 this.setState({ 
                     currentItem: this.state.data[0]
-                 })
+                })
                 break
             default:
                 break
@@ -67,10 +70,9 @@ export default class InfoScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <ScrollView>
-                alert({this.state.currentItem.id})
-                <Text>{this.state.currentItem.img}</Text>
-            </ScrollView>
+                <ScrollView>
+                    <Details item={this.state.currentItem} />
+                </ScrollView>
             </View>
         );
     }
