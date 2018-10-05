@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
-  FlatList
+  FlatList,
+  Dimensions,
 } from 'react-native';
 import {
   Header,
@@ -26,6 +27,9 @@ import TabBarIcon from '../components/TabBarIcon';
 import PathItem from '../components/PathItem';
 import Details from '../components/Details'
 import DetailsUpgrade from '../components/DetailsUpgrade'
+
+const deviceHeight = Dimensions.get('window').height;
+const tabBarHeight = 49
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
@@ -47,12 +51,15 @@ export default class InfoScreen extends React.Component {
           ],
           currentItem: {},
         }
+        this.scrollView = null;
+        this.scrollToSection = this.scrollToSection.bind(this);
     } 
 
     // Calling getData in componentWillMount.
     componentWillMount () {
         {this.getData(this.state.cardID)}
     }
+
 
     // Function that verifies and sets the current item based on the cardID value received. 
     getData (id) {
@@ -68,21 +75,37 @@ export default class InfoScreen extends React.Component {
         }
     }
 
+    scrollToSection (whereTo) {
+        if (this.scrollView) {
+            this.scrollView.scrollTo({
+                y: whereTo,
+                animated: true
+            });
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.viewTextStyle}>
-                    <Text style={styles.textStyle}>
-                        Opzione 1
-                    </Text>
-                    <Text style={styles.textStyle}>
-                        Opzione 2
-                    </Text>
-                    <Text style={styles.textStyle}>
-                        Opzione 3
-                    </Text>
+                    <TouchableOpacity onPress={() => this.scrollToSection(0)}>
+                        <MonoText style={styles.textStyle}>
+                            Inizio
+                        </MonoText>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.scrollToSection((deviceHeight-tabBarHeight))}>
+                        <MonoText style={styles.textStyle}>
+                            Ascolta
+                        </MonoText>
+                    </TouchableOpacity>
+                    <MonoText style={styles.textStyle}>
+                        Leggi
+                    </MonoText>
+                    <MonoText style={styles.textStyle}>
+                        Guarda
+                    </MonoText>
                 </View>
-                <ScrollView>
+                <ScrollView ref={scrollView => this.scrollView = scrollView}>
                     <DetailsUpgrade item={this.state.currentItem} />
                 </ScrollView>
             </View>
@@ -93,17 +116,19 @@ export default class InfoScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
     },
     textStyle: {
-        fontSize: 25,
-        color: 'blue',
+        fontSize: 40,
+        color: 'white',
+        padding: 7,
+        fontWeight: '200',
     },
     viewTextStyle: {
         flex: 1,
         position: 'absolute',
-        bottom:0,
+        bottom: 50,
         alignSelf:'flex-end',
+        marginRight: 30,
         padding: 10,
         zIndex: 1,
     }

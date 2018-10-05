@@ -26,9 +26,10 @@ const DetailsSection = ({ imgPath, highlightedText }) => {
     return (
         <View style={innerImageViewStyle}>
             <ImageBackground 
-                style={{ width: '100%', height: '100%' }}
+                style={{ width: '100%', height: '100%', zIndex: 0 }}
                 resizeMode='cover'
                 source={imgPath}>
+                <View style={{ backgroundColor:'rgba(0,0,0,.6)', zIndex: 1, width: deviceWidth, height: deviceHeight }}></View>
             </ImageBackground>
         </View>
     )
@@ -40,6 +41,8 @@ const styles = {
         height: deviceHeight - tabBarHeight,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor:'rgba(0,0,0,.6)',
+        zIndex: 1,
     },
     imageStyle: {
         flex: 1,
