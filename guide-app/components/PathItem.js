@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity,
     ImageBackground,
+    Platform,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
@@ -78,19 +79,23 @@ class PathItem extends Component {
                                     
                                 </ImageBackground>
                             </View>
-                            <View style={{ width: '50%', alignSelf: 'flex-end', alignItems: 'flex-end', justifyContent: 'flex-end', paddingTop: 20, position: 'relative', zIndex: 1 }}>
-                                <CardButton 
-                                    onPress={() => this.props.infoButtonClicked(this.state.item)}
-                                    style={{ alignItems: 'center', justifyContent: 'center', position: 'absolute' }}
-                                    arrowName={'ios-arrow-round-forward'}    
-                                >
-                                </CardButton>
-                            </View>
+                            
                             <View style={rowStyle}>
                                 <View style={descriptionViewStyle}>
                                     <MonoText style={descriptionStyle}>
                                         {this.state.item.description}
                                     </MonoText>
+                                    <View style={iconStyle}>
+                                        <CardButton 
+                                            onPress={() => this.props.infoButtonClicked(this.state.item)}
+                                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                                            arrowName={Platform.OS === 'ios'
+                                                        ? 'ios-arrow-round-forward'
+                                                        : 'md-arrow-round-forward'
+                                            }    
+                                        >
+                                        </CardButton>
+                                    </View>
                                 </View>
                             </View>
                         </View>
@@ -104,7 +109,7 @@ class PathItem extends Component {
 const styles = {
     innerViewStyle: {
         width: '100%',
-        height: '80%',
+        height: '70%',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         borderTopLeftRadius: 10,
@@ -116,11 +121,13 @@ const styles = {
         height: '100%',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
+        zIndex: 0,
     },
     descriptionViewStyle: {
         flex: 1,
-        width: '50%',
-        alignItems: 'flex-start', 
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center', 
         justifyContent: 'flex-start',
     },
     iconsViewStyle: {
@@ -132,13 +139,18 @@ const styles = {
     descriptionStyle: {
         color: 'black',
         marginLeft: 10,
-        fontSize: 25,
+        fontSize: 27,
+        fontWeight: '300',
     },
     rowStyle: {
+        width: '100%',
+        height: '30%',
         flexDirection:'row',
+        alignItems: 'center',
     },
     iconStyle: {
-        marginRight: 30,
+        position: 'absolute',
+        right: 0,
     },
 }
 

@@ -34,8 +34,14 @@ export default class DetailsUpgrade extends Component {
         
         return (
             <View style={container}>
-                <DetailsSection imgPath={require('../assets/images/whiteshark.jpg')} />
-                <DetailsSection imgPath={require('../assets/images/whitesharkjumping.jpg')} />
+                <DetailsSection 
+                    imgPath={require('../assets/images/whiteshark.jpg')} 
+                    title='Alimentazione'    
+                />
+                <DetailsSection 
+                    imgPath={require('../assets/images/whitesharkjumping.jpg')} 
+                    
+                />
             </View>
         )
     }

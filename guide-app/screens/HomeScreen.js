@@ -103,7 +103,7 @@ export default class HomeScreen extends React.Component {
       item = {
         id: '1',
         avatar: require('../assets/images/squalo-bianco.jpg'), 
-        description: 'Primo'
+        description: 'Alimentazione'
       }
     } else if (lev === 'secondo') {
       item = {
@@ -167,7 +167,7 @@ export default class HomeScreen extends React.Component {
                 name={
                   Platform.OS === 'ios'
                     ? 'ios-add-circle-outline'
-                    : 'plus-circle'
+                    : 'md-add'
                 }
                 size={100}
                 

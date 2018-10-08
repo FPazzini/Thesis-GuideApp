@@ -19,6 +19,7 @@ import {
   Card,
   CardSection,
   AdvancedCard,
+  Close,
 } from '../components/common'
 import { WebBrowser, Icon, Constants } from 'expo';
 import { MonoText } from '../components/StyledText';
@@ -27,9 +28,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import PathItem from '../components/PathItem';
 import Details from '../components/Details'
 import DetailsUpgrade from '../components/DetailsUpgrade'
-
-const deviceHeight = Dimensions.get('window').height;
-const tabBarHeight = 49
+import MenuItems from '../components/MenuItems'
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
@@ -50,6 +49,7 @@ export default class InfoScreen extends React.Component {
             },
           ],
           currentItem: {},
+          
         }
         this.scrollView = null;
         this.scrollToSection = this.scrollToSection.bind(this);
@@ -60,9 +60,9 @@ export default class InfoScreen extends React.Component {
         {this.getData(this.state.cardID)}
     }
 
-
     // Function that verifies and sets the current item based on the cardID value received. 
     getData (id) {
+        console.log('options: ', this.state.menuOptions)
         // Parsing string to int.
         switch (parseInt(id)) {
             case 1:
@@ -79,33 +79,26 @@ export default class InfoScreen extends React.Component {
         if (this.scrollView) {
             this.scrollView.scrollTo({
                 y: whereTo,
-                animated: true
+                animated: true,
             });
         }
+    }
+
+    // Method used to evaluate the scroll in order to update the style of the menu options.
+    evaluateScroll (event) { 
+        this.yOffset = event.nativeEvent.contentOffset.y
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.viewTextStyle}>
-                    <TouchableOpacity onPress={() => this.scrollToSection(0)}>
-                        <MonoText style={styles.textStyle}>
-                            Inizio
-                        </MonoText>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.scrollToSection((deviceHeight-tabBarHeight))}>
-                        <MonoText style={styles.textStyle}>
-                            Ascolta
-                        </MonoText>
-                    </TouchableOpacity>
-                    <MonoText style={styles.textStyle}>
-                        Leggi
-                    </MonoText>
-                    <MonoText style={styles.textStyle}>
-                        Guarda
-                    </MonoText>
-                </View>
-                <ScrollView ref={scrollView => this.scrollView = scrollView}>
+                <Close imgPath={require('../assets/icons/close.png')} />
+                <MenuItems doScroll={section => this.scrollToSection(section)} />
+                <ScrollView 
+                    ref={scrollView => this.scrollView = scrollView}
+                    onScroll={event => this.evaluateScroll(event)}
+                    scrollEventThrottle={16}
+                >
                     <DetailsUpgrade item={this.state.currentItem} />
                 </ScrollView>
             </View>
@@ -128,6 +121,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 50,
         alignSelf:'flex-end',
+        alignItems: 'center',
         marginRight: 30,
         padding: 10,
         zIndex: 1,

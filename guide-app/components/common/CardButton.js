@@ -11,12 +11,12 @@ const CardButton = ({ onPress, style, arrowName }) => {
         <TouchableHighlight
             style={[styles.buttonStyle, style]}
             onPress={onPress}
-            underlayColor="#00786B"
+            underlayColor="#F5F5F5"
         >
             <Ionicons 
                 name={arrowName}
                 size={35} 
-                color='white'
+                color='black'
             />
         </TouchableHighlight>
     )
@@ -29,11 +29,14 @@ const styles = {
         marginRight: 20,
         alignItems: 'center', 
         justifyContent: 'center',
-        backgroundColor: '#1B998B',
-        borderColor: 'black',
+        backgroundColor: '#F8F8FF',
         
         borderRadius: 100,
-        borderWidth:1, 
+
+        shadowColor: '#F5F5F5',
+        shadowOffset: { width: 0, height: 1},
+        shadowOpacity: 0.15,
+        shadowRadius: 1,
         //position: 'absolute' //--> To de-comment if card-based layout.
     }
 }
