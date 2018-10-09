@@ -5,9 +5,11 @@ import {
     TouchableOpacity,
     ImageBackground,
     Dimensions,
+    WebView,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { MonoText } from './StyledText';
+import { FontStyleEval } from './FontSizeEval'
 import GLOBALS from '../constants/GlobalVars'
 
 const DetailsHome = ({ imgPath, highlightedText, title, sectionIcon }) => {
@@ -16,8 +18,35 @@ const DetailsHome = ({ imgPath, highlightedText, title, sectionIcon }) => {
         innerImageViewStyle,
         imageStyle,
         titleStyle,
-        contentViewStyle,
+        contentViewStyle,   
+        contentStyle,
+        fontStyle,
     } = styles
+
+    function getTitleSized (text) {
+        return (
+            <View>
+                <FontStyleEval 
+                    style={titleStyle}
+                    text={text}
+                    textType="title"
+                />
+            </View>
+        )
+    }
+
+    function getContentSized (text) {
+        return (
+            <View style={{ alignSelf: 'flex-start' }}>
+                <FontStyleEval 
+                    style={contentStyle}
+                    text={text}
+                    textAlign="justify"
+                    textType="section"
+                />
+            </View>
+        )
+    }
 
     return (
         <View style={innerImageViewStyle}>
@@ -25,16 +54,12 @@ const DetailsHome = ({ imgPath, highlightedText, title, sectionIcon }) => {
                 style={{ width: '100%', height: '100%', zIndex: 0 }}
                 resizeMode='cover'
                 source={imgPath}>
-                <View style={{ width: GLOBALS.DEVICE_WIDTH, height: GLOBALS.DEVICE_HEIGHT, backgroundColor: 'rgba(0,0,0,.6)' }}>
-                    <View style={{ backgroundColor:'red', padding: 10, zIndex: 1, width: GLOBALS.DEVICE_WIDTH, alignItems: 'center' }}>
-                        <MonoText style={titleStyle}>
-                            {title}
-                        </MonoText>
+                <View style={{ width: GLOBALS.DEVICE_WIDTH, height: GLOBALS.DEVICE_HEIGHT, backgroundColor: 'rgba(0,0,0,.67)' }}>
+                    <View style={{ padding: 10, zIndex: 1, width: GLOBALS.DEVICE_WIDTH, alignItems: 'center' }}>
+                        {getTitleSized(title)}
                     </View>
-                    <View style={{ flex: 1, backgroundColor: 'blue', margin: '5%', zIndex: 1, alignItems: 'center' }}>
-                        <MonoText style={{ fontWeight: '200', padding: 5, color: 'white' }}>
-                            Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao 
-                        </MonoText>
+                    <View style={{ flex: 1, height: GLOBALS.DEVICE_HEIGHT-GLOBALS.TAB_BAR_HEIGHT, margin: '15%', marginBottom: '5%', zIndex: 1}}>
+                        {getContentSized('Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao')}
                     </View>
                 </View>
             </ImageBackground>
@@ -54,7 +79,6 @@ const styles = {
         flex: 1,
     },
     titleStyle: {
-        fontSize: 40,
         color: 'white',
         padding: 10,
         fontWeight: '500',
@@ -62,13 +86,16 @@ const styles = {
     contentViewStyle: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'red',
         marginBottom: 5,
     },
     contentStyle: {
         color: 'white',
-        fontSize: 18,
-        fontWeight: 200,
+        fontWeight: '200',
+    },
+    fontStyle: {
+        fontWeight: '200', 
+        padding: 5, 
+        color: 'white',
     }
    
 }

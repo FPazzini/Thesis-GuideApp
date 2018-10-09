@@ -10,6 +10,8 @@ import {
     SectionButton
  } from './common/'
 import DetailsHome from './DetailsHome'
+import DetailsAudio from './DetailsAudio'
+import InfoPopup from './InfoPopup';
 
 export default class DetailsUpgrade extends Component {
     
@@ -38,9 +40,11 @@ export default class DetailsUpgrade extends Component {
                     imgPath={require('../assets/images/whiteshark.jpg')} 
                     title='Alimentazione'    
                 />
-                <DetailsHome 
+                <DetailsAudio 
                     imgPath={require('../assets/images/whitesharkjumping.jpg')} 
-                    
+                    playIcon={require('../assets/icons/play2.png')}
+                    pauseIcon={require('../assets/icons/pause2.png')}
+                    title='Ascolta'
                 />
             </View>
         )

@@ -73,8 +73,7 @@ const styles = {
         bottom: 50,
         alignSelf:'flex-end',
         alignItems: 'center',
-        marginRight: 30,
-        padding: 10,
+        margin: 5,
         zIndex: 1,
     },
 }
