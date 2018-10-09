@@ -13,10 +13,14 @@ const Close = (props) => {
 
     return (
         <View style={viewStyle}>
-            <Image 
-                source={props.imgPath}
-                style={{ width: 30, height: 30 }}
-            />
+            <TouchableOpacity
+                onPress={props.onPress}
+            >
+                <Image 
+                    source={props.imgPath}
+                    style={{ width: 30, height: 30 }}
+                />
+            </TouchableOpacity>
         </View>
     )
 }

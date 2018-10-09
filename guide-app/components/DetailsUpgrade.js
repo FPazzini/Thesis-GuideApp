@@ -9,7 +9,7 @@ import { yellow } from 'ansi-colors';
 import {
     SectionButton
  } from './common/'
-import DetailsSection from './DetailsSection'
+import DetailsHome from './DetailsHome'
 
 export default class DetailsUpgrade extends Component {
     
@@ -34,11 +34,11 @@ export default class DetailsUpgrade extends Component {
         
         return (
             <View style={container}>
-                <DetailsSection 
+                <DetailsHome 
                     imgPath={require('../assets/images/whiteshark.jpg')} 
                     title='Alimentazione'    
                 />
-                <DetailsSection 
+                <DetailsHome 
                     imgPath={require('../assets/images/whitesharkjumping.jpg')} 
                     
                 />

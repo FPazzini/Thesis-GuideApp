@@ -89,10 +89,14 @@ export default class InfoScreen extends React.Component {
         this.yOffset = event.nativeEvent.contentOffset.y
     }
 
+    closeDetails () {
+        this.props.navigation.goBack()
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Close imgPath={require('../assets/icons/close.png')} />
+                <Close imgPath={require('../assets/icons/close.png')} onPress={this.closeDetails.bind(this)} />
                 <MenuItems doScroll={section => this.scrollToSection(section)} />
                 <ScrollView 
                     ref={scrollView => this.scrollView = scrollView}
