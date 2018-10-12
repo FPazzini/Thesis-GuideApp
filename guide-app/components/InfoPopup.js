@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import {
     View,
     Text,
-    Modal,
     TouchableHighlight,
     Alert, 
 } from 'react-native'
+import Modal from 'react-native-modal'
 import { FontStyleEval } from './FontSizeEval'
+import { ModalContent } from './common';
 
 class InfoPopup extends Component {
     state = {
@@ -23,26 +24,10 @@ class InfoPopup extends Component {
         return (
             <View style={{ marginTop: 25 }}>
                 <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.')
-                    }}>
+                    animationIn='slideInUp'
+                    isVisible={this.state.modalVisible}>
                     
-                    <View style={{ marginTop: 22, backgroundColor: 'blue' }}>
-                        <FontStyleEval 
-                            text={'Hello World!'}
-                            textType="section"
-                        />
-
-                        <TouchableHighlight
-                            onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible)
-                            }}>
-                                <Text>Indietro</Text>
-                        </TouchableHighlight>    
-                    </View>
+                    <ModalContent onPress={visibile => this.setModalVisible(visibile)} />
                 </Modal>
 
                 <TouchableHighlight
