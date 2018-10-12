@@ -23,7 +23,6 @@ export default class Play extends Component {
     }
 
     toggleSound () {
-        console.log('cliccato')
         // If the sound is being reproduced at the moment
         if (this.state.isPlaying) {
             this.setState({

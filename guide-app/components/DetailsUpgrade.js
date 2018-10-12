@@ -11,6 +11,8 @@ import {
  } from './common/'
 import DetailsHome from './DetailsHome'
 import DetailsAudio from './DetailsAudio'
+import DetailsReading from './DetailsReading'
+import DetailsVideo from './DetailsVideo'
 import InfoPopup from './InfoPopup';
 
 export default class DetailsUpgrade extends Component {
@@ -19,7 +21,6 @@ export default class DetailsUpgrade extends Component {
         super (props)
         this.state = {
             item: props.item,
-            
         }
     }
 
@@ -38,13 +39,21 @@ export default class DetailsUpgrade extends Component {
             <View style={container}>
                 <DetailsHome 
                     imgPath={require('../assets/images/whiteshark.jpg')} 
-                    title='Alimentazione'    
+                    title='Alimentazione'
                 />
                 <DetailsAudio 
                     imgPath={require('../assets/images/whitesharkjumping.jpg')} 
                     playIcon={require('../assets/icons/play2.png')}
                     pauseIcon={require('../assets/icons/pause2.png')}
                     title='Ascolta'
+                />
+                <DetailsReading 
+                    imgPath={require('../assets/images/hammerhead1.jpg')}
+                    title='Leggi'
+                />
+                <DetailsVideo 
+                    imgPath={require('../assets/images/gws.jpg')}
+                    title='Guarda'
                 />
             </View>
         )

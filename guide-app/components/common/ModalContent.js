@@ -11,12 +11,13 @@ import {
     ModalHeader,
 } from './'
 
-const ModalContent = ({ onPress }) => {
+const ModalContent = ({ onPress, bodyText }) => {
 
     const {
         viewStyle,
         backButtonStyle,
         headerStyle,
+        bodyStyle,
     } = styles
 
     return (
@@ -29,15 +30,15 @@ const ModalContent = ({ onPress }) => {
                 />
             </ModalHeader>
             
-            <View style={{ backgroundColor: 'orange'}}>
-                
-            </View>
-            <View style={{flex: 1,}}>
-            <Text style={{padding: 5}}>
-                Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao 
-                Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao 
-                Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao Ciao ciao ciao 
-            </Text>
+            <View style={{flex: 1, marginBottom: 10,}}>
+                <ScrollView>
+                    <FontStyleEval 
+                        style={bodyStyle}
+                        text={bodyText}
+                        textAlign="justify"
+                        textType='section'
+                    />
+                </ScrollView>
             </View>
             <View style={backButtonStyle}>
                 <View style={{ bottom: 5, padding: 5, }}>
@@ -77,6 +78,13 @@ const styles = {
         color: 'white',
         fontWeight: '600',
         padding: 15,
+    },
+    bodyStyle: {
+        marginTop: 10,
+        padding: 5,
+        color: 'white',
+        marginLeft: 5,
+        marginRight: 5,
     },
 }
 

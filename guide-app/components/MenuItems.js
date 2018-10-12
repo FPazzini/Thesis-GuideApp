@@ -49,12 +49,16 @@ export default class MenuItems extends Component {
                         <Image source={require('../assets/icons/play-button.png')} style={{ width: this.state.menuOptions[1].width, height: this.state.menuOptions[1].height }} />
                     </MonoText>
                 </TouchableOpacity>
-                <MonoText style={styles.textStyle}>
-                    <Image source={require('../assets/icons/open-book.png')} style={{ width: this.state.menuOptions[2].width, height: this.state.menuOptions[2].height }} />
-                </MonoText>
-                <MonoText style={styles.textStyle}>
-                    <Image source={require('../assets/icons/youtube.png')} style={{ width: this.state.menuOptions[3].width, height: this.state.menuOptions[3].height }} />
-                </MonoText>
+                <TouchableOpacity onPress={() => this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}>
+                    <MonoText style={styles.textStyle}>
+                        <Image source={require('../assets/icons/open-book.png')} style={{ width: this.state.menuOptions[2].width, height: this.state.menuOptions[2].height }} />
+                    </MonoText>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 3))}>
+                    <MonoText style={styles.textStyle}>
+                        <Image source={require('../assets/icons/youtube.png')} style={{ width: this.state.menuOptions[3].width, height: this.state.menuOptions[3].height }} />
+                    </MonoText>
+                </TouchableOpacity>
             </View>
         )
     }
