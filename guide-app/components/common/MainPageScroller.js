@@ -12,7 +12,7 @@ const MainPageScroller = ({ onPress, tabBarHeight }) => {
                 <FontStyleEval
                     text={'Scrolla per iniziare'}
                     textType={'section'}
-                    style={{ color: 'white', marginBottom: 35 }}
+                    style={{ fontWeight: 'bold', color: '#517fa4', marginBottom: 10 }}
                     textAlign="center"
                 />
                 <Icon

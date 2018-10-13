@@ -63,7 +63,7 @@ const DetailsHome = ({ imgPath, title, playIcon, pauseIcon }) => {
                     <View style={{ flex: 1, height: GLOBALS.DEVICE_HEIGHT-GLOBALS.TAB_BAR_HEIGHT, margin: '15%', marginBottom: '5%', zIndex: 1}}>
                         {getContentSized('Riproduci audio per scoprire il prossimo indizio')}
                         <Play playIcon={playIcon} pauseIcon={pauseIcon} />
-                        <InfoPopup />
+                        <InfoPopup text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus quam non viverra feugiat. Aliquam venenatis sed mauris blandit elementum. Aliquam ut viverra nulla, ac vestibulum nisl. Ut ac sollicitudin risus. Aliquam vitae aliquam lectus, eget mollis elit. Pellentesque aliquam et magna vel dignissim. Vivamus convallis consequat nibh, vitae accumsan lectus malesuada lacinia. Duis efficitur turpis a lorem mollis posuere. Mauris nec felis vitae dolor accumsan suscipit. In efficitur velit eleifend magna convallis, at auctor tellus blandit. Vivamus eleifend urna non urna tempus fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque quis libero in lorem aliquam eleifend. Aliquam et faucibus elit, ornare pharetra elit.'} />
                     </View>
                 </View>
             </ImageBackground>

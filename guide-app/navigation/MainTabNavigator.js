@@ -12,10 +12,24 @@ import InfoSchedaScreen from '../screens/InfoScreen'
 
 const HomeStack = createStackNavigator(
 {
-  Home: HomeScreen,
-  Links: LinksScreen,
-  QRReader: QRReaderScreen,
-  InfoScreen: InfoSchedaScreen,
+  Home: {
+    screen: HomeScreen
+  },
+  Links: {
+    screen: LinksScreen
+  },
+  QRReader: {
+    screen: QRReaderScreen,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  },
+  InfoScreen: {
+    screen: InfoSchedaScreen,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  },
 },
 {
   initialRouteName: 'Home',
@@ -31,22 +45,30 @@ const HomeStack = createStackNavigator(
   },
 });
 
-HomeStack.navigationOptions = {
-  title: 'title',
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-      size={26}
-    />
-  ),
-  
+HomeStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+    title: 'title',
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === 'ios'
+            ? `ios-information-circle${focused ? '' : '-outline'}`
+            : 'md-information-circle'
+        }
+        size={26}
+      />
+    ),
+  };
 };
+
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
