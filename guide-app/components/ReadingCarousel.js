@@ -93,6 +93,10 @@ const styles = {
     borderTopLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    shadowColor: '#2e2b29',
+    shadowOffset: { height: 2, width: 0 },
   },
   cardHeaderView: {
     alignSelf: 'flex-start', 
@@ -103,11 +107,6 @@ const styles = {
     alignItems: 'center', 
     justifyContent: 'center',
     
-    shadowColor: '#1a1816',
-        shadowOffset: { width: 0, height: 2 },
-        borderBottomWidth: 0.2,
-        shadowOpacity: 0.4,
-        elevation: 2,
   }
 
 }

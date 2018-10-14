@@ -28,6 +28,7 @@ import PathItem from '../components/PathItem';
 import PathItemRow from '../components/PathItemRow'
 
 const numCols = 1
+let idxItemToFind = 0
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -47,7 +48,20 @@ export default class HomeScreen extends React.Component {
     pathElements: [
       
     ],
-    showExplanation: true
+    steps: [
+      {
+        id: '1',
+        avatar: require('../assets/images/squalo-bianco.jpg'), 
+        description: 'Alimentazione'
+      },
+      {
+        id: '2',
+        avatar: require('../assets/images/gws.jpg'),
+        description: 'Secondo'
+      }
+    ],
+    showExplanation: true,
+
   }
  
   showExplanationText () {
@@ -92,31 +106,43 @@ export default class HomeScreen extends React.Component {
 
   buttonClicked () {
     this.props.navigation.navigate('QRReader', {
-      evaluateLevel: this.evaluateLevel
+      evaluateLevel: this.evaluateLevel,
+      idx: idxItemToFind
     })
   }
 
   evaluateLevel = (value) => {
     var lev = value
     var item;
-    if (lev === 'primo') {
-      item = {
-        id: '1',
-        avatar: require('../assets/images/squalo-bianco.jpg'), 
-        description: 'Alimentazione'
-      }
-    } else if (lev === 'secondo') {
-      item = {
-        id: '2',
-        avatar: require('../assets/images/squalo-bianco.jpg'),
-        description: 'Secondo'
-      }
+    if (lev === this.state.steps[idxItemToFind].id) {
+      item = this.state.steps[idxItemToFind]
+      idxItemToFind += 1
+      var levelsList = [...this.state.pathElements, item] 
+      this.setState({ 
+        pathElements: levelsList,
+        showExplanation: this.state.showExplanation ? false : this.state.showExplanation
+      })
+    } else {
+      // Show alert or something saying the focused QR code is not the right one, at this particular time. 
     }
-    var levelsList = [...this.state.pathElements, item] 
-    this.setState({ 
-      pathElements: levelsList,
-      showExplanation: this.state.showExplanation ? false : this.state.showExplanation
-    })
+    //if (lev === 'primo') {
+    //  item = {
+    //    id: '1',
+    //    avatar: require('../assets/images/squalo-bianco.jpg'), 
+    //    description: 'Alimentazione'
+    //  }
+    //} else if (lev === 'secondo') {
+    //  item = {
+    //    id: '2',
+    //    avatar: require('../assets/images/gws.jpg'),
+    //    description: 'Secondo'
+    //  }
+    //}
+    //var levelsList = [...this.state.pathElements, item] 
+    //this.setState({ 
+    //  pathElements: levelsList,
+    //  showExplanation: this.state.showExplanation ? false : this.state.showExplanation
+    //})
   }
 
   infoClicked = (item) => {

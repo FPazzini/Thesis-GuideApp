@@ -4,6 +4,7 @@ import {
 } from 'react-native'
 import { MonoText } from './StyledText'
 import GLOBALS from '../constants/GlobalVars'
+import TEXT_CLASSES from '../constants/TextClasses'
 
 export const FontStyleEval = ({ style, textAlign, text, textType }) => {
 
@@ -14,13 +15,13 @@ export const FontStyleEval = ({ style, textAlign, text, textType }) => {
     function chooseTextType () {
         let size = 12
         switch (textType) {
-            case 'title':
+            case TEXT_CLASSES.TITLE:
                 size = evaluateSize(25)
                 break;
-            case 'subtitle':
+            case TEXT_CLASSES.SUBTITLE:
                 size = evaluateSize(20)
                 break
-            case 'section':
+            case TEXT_CLASSES.SECTION:
                 console.log('section')
                 size = evaluateSize(18)
                 break
