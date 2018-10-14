@@ -9,6 +9,7 @@ import {
     WebView,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
+import ReadingCarousel from './ReadingCarousel'
 import { MonoText } from './StyledText';
 import { FontStyleEval } from './FontSizeEval'
 import GLOBALS from '../constants/GlobalVars'
@@ -59,10 +60,8 @@ const DetailsReading = ({ imgPath, highlightedText, title, sectionIcon }) => {
                     <View style={{ padding: 10, zIndex: 1, width: GLOBALS.DEVICE_WIDTH, alignItems: 'center' }}>
                         {getTitleSized(title)}
                     </View>
-                    <View style={{ flex: 1, height: GLOBALS.DEVICE_HEIGHT-GLOBALS.TAB_BAR_HEIGHT, margin: '15%', marginBottom: '5%', zIndex: 1}}>
-                        <ScrollView>
-                            {getContentSized('Aenean nec massa a mi tristique malesuada. Proin volutpat enim vitae urna cursus, at faucibus nibh condimentum. Etiam orci urna, placerat vel vehicula cursus, tempus quis metus. Praesent sollicitudin viverra mollis. Pellentesque porta dui sit amet finibus ullamcorper. Vestibulum pharetra massa feugiat magna varius, nec dictum elit vehicula. Maecenas mollis tristique eros, elementum porttitor nibh dictum ac. Nam ullamcorper magna sem, ut laoreet mi lobortis in. Maecenas congue felis mauris, vitae auctor enim vestibulum sit amet. Vivamus dignissim pretium est imperdiet maximus. Integer eget libero neque.')}
-                        </ScrollView>
+                    <View style={{ width: '100%', height: GLOBALS.DEVICE_HEIGHT-GLOBALS.TAB_BAR_HEIGHT, marginBottom: '5%', zIndex: 1, alignItems: 'center'}}>
+                        <ReadingCarousel />
                     </View>
                 </View>
             </ImageBackground>
@@ -104,3 +103,7 @@ const styles = {
 }
 
 export default DetailsReading
+
+//<ScrollView>
+//{getContentSized('Aenean nec massa a mi tristique malesuada. Proin volutpat enim vitae urna cursus, at faucibus nibh condimentum. Etiam orci urna, placerat vel vehicula cursus, tempus quis metus. Praesent sollicitudin viverra mollis. Pellentesque porta dui sit amet finibus ullamcorper. Vestibulum pharetra massa feugiat magna varius, nec dictum elit vehicula. Maecenas mollis tristique eros, elementum porttitor nibh dictum ac. Nam ullamcorper magna sem, ut laoreet mi lobortis in. Maecenas congue felis mauris, vitae auctor enim vestibulum sit amet. Vivamus dignissim pretium est imperdiet maximus. Integer eget libero neque.')}
+//<ScrollView>
