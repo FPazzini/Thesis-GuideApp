@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
       {
         id: '1',
         avatar: require('../assets/images/squalo-bianco.jpg'), 
-        description: 'Alimentazione'
+        description: 'Riproduzione'
       },
       {
         id: '2',
