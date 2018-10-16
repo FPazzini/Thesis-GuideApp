@@ -3,11 +3,13 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Animated,
+    Easing,
 } from 'react-native'
-import Carousel from 'react-native-snap-carousel'; // 3.6.0
+import Carousel from 'react-native-snap-carousel';
 import { FontStyleEval } from './FontSizeEval';
-import { ModalHeader } from './common/'
+import { ModalHeader, ExpandingCard } from './common/'
 
 export default class ReadingCarousel extends Component {
 
@@ -50,15 +52,9 @@ export default class ReadingCarousel extends Component {
   _renderItem = ( {item, index} ) => {
     console.log("rendering,", index, item)
     return (
-        <View style={styles.cardStyle}>
-            <View style={styles.cardHeaderView}>
-              <FontStyleEval 
-                  style={{ color: '#1a1816', fontWeight: '600' }}
-                  text={item.title}
-                  textType="subtitle"
-              />
-            </View>
-        </View>
+      <View style={{ height: '60%', marginTop: '20%', backgroundColor: 'green'}}>
+        <ExpandingCard />
+      </View>
     );
   }
 
@@ -82,7 +78,7 @@ export default class ReadingCarousel extends Component {
 
 const styles = {
   rootView: {
-    height: '60%', 
+    height: '100%', 
     marginTop: 15,
   },
   cardStyle: {

@@ -125,24 +125,6 @@ export default class HomeScreen extends React.Component {
     } else {
       // Show alert or something saying the focused QR code is not the right one, at this particular time. 
     }
-    //if (lev === 'primo') {
-    //  item = {
-    //    id: '1',
-    //    avatar: require('../assets/images/squalo-bianco.jpg'), 
-    //    description: 'Alimentazione'
-    //  }
-    //} else if (lev === 'secondo') {
-    //  item = {
-    //    id: '2',
-    //    avatar: require('../assets/images/gws.jpg'),
-    //    description: 'Secondo'
-    //  }
-    //}
-    //var levelsList = [...this.state.pathElements, item] 
-    //this.setState({ 
-    //  pathElements: levelsList,
-    //  showExplanation: this.state.showExplanation ? false : this.state.showExplanation
-    //})
   }
 
   infoClicked = (item) => {
