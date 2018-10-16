@@ -32,31 +32,68 @@ export default class MenuItems extends Component {
                   width: sectionFocusedSize,
                   height: sectionFocusedSize,
               },
-            ]
+            ],
+            activated: [true, false, false, false]
         }
+    }
+
+    componentDidMount() {
+        this.props.onRef(this)
+    }
+    
+    componentWillUnmount() {
+        this.props.onRef(undefined)
+    }
+
+    activate (itemIndex) {
+        this.state.activated.map((_v, index) => {
+            if (index === itemIndex) {
+                const newActivated = [...this.state.activated];
+                newActivated.map((_, idx) => {
+                    if (idx !== index) {
+                        newActivated[idx] = false
+                    }
+                })
+                newActivated[index] = true;
+                console.log(newActivated)
+                this.setState({ activated: newActivated });
+            }
+        })
     }
 
     render () {
         return (
             <View style={styles.viewTextStyle}>
-                <TouchableOpacity onPress={() => this.props.doScroll(0)}>
+                <TouchableOpacity onPress={() => {
+                    this.activate(0)
+                    this.props.doScroll(0)}
+                }>
                     <MonoText style={styles.textStyle}>
-                        <Image source={require('../assets/icons/shark.png')} style={{ width: this.state.menuOptions[0].width, height: this.state.menuOptions[0].height, padding: 7, }} />
+                        <Image source={this.state.activated[0] ? require('../assets/icons/shark-outline.png') : require('../assets/icons/shark.png')} style={styles.notActivatedItem} />
                     </MonoText>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.doScroll((GLOBALS.DEVICE_HEIGHT))}>
+                <TouchableOpacity onPress={() => {
+                    this.activate(1)
+                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT))}
+                }>
                     <MonoText style={styles.textStyle}>
-                        <Image source={require('../assets/icons/play-button.png')} style={{ width: this.state.menuOptions[1].width, height: this.state.menuOptions[1].height, padding: 7, }} />
+                        <Image source={this.state.activated[1] ? require('../assets/icons/play-button-outline.png') : require('../assets/icons/play-button.png')} style={styles.notActivatedItem} />
                     </MonoText>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}>
+                <TouchableOpacity onPress={() => {
+                    this.activate(2)
+                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}
+                }>
                     <MonoText style={styles.textStyle}>
-                        <Image source={require('../assets/icons/open-book.png')} style={{ width: this.state.menuOptions[2].width, height: this.state.menuOptions[2].height, padding: 7, }} />
+                        <Image source={this.state.activated[2] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/open-book.png')} style={styles.notActivatedItem} />
                     </MonoText>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 3))}>
+                <TouchableOpacity onPress={() => {
+                    this.activate(3)
+                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 3))}
+                }>
                     <MonoText style={styles.textStyle}>
-                        <Image source={require('../assets/icons/youtube.png')} style={{ width: this.state.menuOptions[3].width, height: this.state.menuOptions[3].height, padding: 7, }} />
+                        <Image source={this.state.activated[3] ? require('../assets/icons/youtube-outline.png') : require('../assets/icons/youtube.png')} style={styles.notActivatedItem} />
                     </MonoText>
                 </TouchableOpacity>
             </View>
@@ -81,4 +118,14 @@ const styles = {
         margin: 5,
         zIndex: 1,
     },
+    activatedItem: {
+        padding: 7,
+        width: 60,
+        height: 60,
+    },
+    notActivatedItem: {
+        padding: 7,
+        width: 40,
+        height: 40,
+    }
 }

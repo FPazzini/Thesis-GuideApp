@@ -18,7 +18,7 @@ const Close = (props) => {
             >
                 <Image 
                     source={props.imgPath}
-                    style={{ width: 30, height: 30 }}
+                    style={{ width: 20, height: 20 }}
                 />
             </TouchableOpacity>
         </View>

@@ -29,6 +29,7 @@ import PathItem from '../components/PathItem';
 import Details from '../components/Details'
 import DetailsUpgrade from '../components/DetailsUpgrade'
 import MenuItems from '../components/MenuItems'
+import GLOBALS from '../constants/GlobalVars'
 
 export default class InfoScreen extends React.Component {
     static navigationOptions = {
@@ -53,11 +54,17 @@ export default class InfoScreen extends React.Component {
         }
         this.scrollView = null;
         this.scrollToSection = this.scrollToSection.bind(this);
+        
+        this.menu = React.createRef();
+
     } 
 
     // Calling getData in componentWillMount.
     componentWillMount () {
         {this.getData(this.state.cardID)}
+    }
+
+    componentDidMount () {
     }
 
     // Function that verifies and sets the current item based on the cardID value received. 
@@ -87,6 +94,15 @@ export default class InfoScreen extends React.Component {
     // Method used to evaluate the scroll in order to update the style of the menu options.
     evaluateScroll (event) { 
         this.yOffset = event.nativeEvent.contentOffset.y
+        if (this.yOffset >= 0) {
+            this.menu.activate(0)
+        } if (this.yOffset >= GLOBALS.DEVICE_HEIGHT) {
+            this.menu.activate(1)
+        } if (this.yOffset >= GLOBALS.DEVICE_HEIGHT * 2) {
+            this.menu.activate(2)
+        } if (this.yOffset >= GLOBALS.DEVICE_HEIGHT * 3) {
+            this.menu.activate(3)
+        }
     }
 
     closeDetails () {
@@ -97,7 +113,7 @@ export default class InfoScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Close imgPath={require('../assets/icons/close.png')} onPress={this.closeDetails.bind(this)} />
-                <MenuItems doScroll={section => this.scrollToSection(section)} />
+                <MenuItems onRef={ref => (this.menu = ref)} doScroll={section => this.scrollToSection(section)} />
                 <ScrollView 
                     ref={scrollView => this.scrollView = scrollView}
                     onScroll={event => this.evaluateScroll(event)}
