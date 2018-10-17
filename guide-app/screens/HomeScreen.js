@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
-  FlatList
 } from 'react-native';
 import {
   Header,
@@ -19,6 +18,7 @@ import {
   CardSection,
   AdvancedCard,
 } from '../components/common'
+import { FlatList, RectButton } from 'react-native-gesture-handler';
 import { WebBrowser, Icon, Constants } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
@@ -26,6 +26,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import QRReader from './QRReader';
 import PathItem from '../components/PathItem';
 import PathItemRow from '../components/PathItemRow'
+import AppleStyleSwipeableRow from '../components/Example/AppleStyleSwipeableRow';
+import GmailStyleSwipeableRow from '../components/Example/GmailStyleSwipeableRow';
 
 const numCols = 1
 let idxItemToFind = 0
@@ -135,9 +137,11 @@ export default class HomeScreen extends React.Component {
 
   renderList = ({ item }) => {
     return (
-      <View>
-        <PathItem item={item} infoButtonClicked={card => this.infoClicked(card)} />
-      </View>
+      <GmailStyleSwipeableRow>
+        <View>
+          <PathItem item={item} infoButtonClicked={card => this.infoClicked(card)} /> 
+        </View>
+      </GmailStyleSwipeableRow>
     );
   }
 
