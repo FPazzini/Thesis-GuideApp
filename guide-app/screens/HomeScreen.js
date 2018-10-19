@@ -135,9 +135,15 @@ export default class HomeScreen extends React.Component {
     })
   }
 
+  openQRSwiping (item) {
+    this.props.navigation.navigate('InfoScreen', {
+      cardID: item.id
+    })
+  }
+
   renderList = ({ item }) => {
     return (
-      <GmailStyleSwipeableRow>
+      <GmailStyleSwipeableRow launchOnSwipe={() => this.openQRSwiping(item)}>
         <View>
           <PathItem item={item} infoButtonClicked={card => this.infoClicked(card)} /> 
         </View>

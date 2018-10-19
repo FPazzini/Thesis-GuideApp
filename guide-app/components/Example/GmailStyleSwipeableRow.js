@@ -49,6 +49,12 @@ export default class GmailStyleSwipeableRow extends Component {
   close = () => {
     this._swipeableRow.close();
   };
+
+  launchAndReset () {
+    this.close()
+    this.props.launchOnSwipe()
+  }
+  
   render() {
     const { children } = this.props;
     return (
@@ -58,7 +64,8 @@ export default class GmailStyleSwipeableRow extends Component {
         leftThreshold={80}
         rightThreshold={40}
         renderLeftActions={this.renderLeftActions}
-        renderRightActions={this.renderRightActions}>
+        renderRightActions={this.renderRightActions}
+        onSwipeableWillOpen={this.launchAndReset.bind(this)}>
         {children}
       </Swipeable>
     );
