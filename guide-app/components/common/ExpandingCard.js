@@ -39,7 +39,7 @@ const ExpandingCard = (props) => {
       }}
     >
       <Animated.View style={transformStyle}>
-        <Text>Ciao!!!</Text>
+        {props.children}
       </Animated.View>
     </TouchableWithoutFeedback>
   );
@@ -48,7 +48,7 @@ const ExpandingCard = (props) => {
 const styles = {
   card: {
     width: '100%',
-    height: '100%',
+    height: 270,
     backgroundColor: "#fcfbf9",
   },
   name: {

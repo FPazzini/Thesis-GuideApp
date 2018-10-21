@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
+  LayoutAnimation,
 } from 'react-native';
 import {
   Header,
@@ -39,17 +40,10 @@ export default class HomeScreen extends React.Component {
 
   state = {
     showInstrMsg: true,
-    qrPlot: 'introduction', // captured by the QR code reader
-    currentPlot: '',
-    plotCounter: 0,
-    phases: {
-      'introduction' : 'Inizia cosi\' la nostra avventura...',
-      'diet' : 'The diet is made of ...'
-    },
     addOutline: true,
-    pathElements: [
-      
-    ],
+    // PathELements represents the set of cards that are visible / must be shown.
+    pathElements: [],
+    // Steps contains the collection of all the step of the treasure hunt.
     steps: [
       {
         id: '1',
@@ -61,6 +55,10 @@ export default class HomeScreen extends React.Component {
         avatar: require('../assets/images/gws.jpg'),
         description: 'Secondo'
       }
+    ],
+    clues: [
+      'Alcune specie di squali e dei loro parenti fanno uova che attaccano attraverso filamenti al fondo: trova le uova delle torpedini e dei gattucci, attenzione quelle delle torpedini sono scure',
+      'Gli squali che hanno denti fatti come delle piastre mangiano animali con il corpo duro. Trova la preda del palombo, attenzione, non è un pesce, ha il corpo duro, due potenti chele e due macchie simili a occhi sulla coda',
     ],
     showExplanation: true,
 
@@ -94,16 +92,6 @@ export default class HomeScreen extends React.Component {
         </View> 
       )
     }
-  }
-
-  showPlot () {
-    /*if (this.state.qrPlot ===  Object.keys(this.state.phases)[this.state.plotCounter]) {
-      return (
-        <Text style={styles.plotStyle}>
-          {Object.values(this.state.phases)[this.state.plotCounter]}
-        </Text>
-      )
-    }*/
   }
 
   buttonClicked () {
@@ -142,6 +130,7 @@ export default class HomeScreen extends React.Component {
   }
 
   renderList = ({ item }) => {
+    LayoutAnimation.linear()
     return (
       <GmailStyleSwipeableRow launchOnSwipe={() => this.openQRSwiping(item)}>
         <View>
@@ -162,40 +151,49 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  showClue () {
+    var clue = this.state.clues[idxItemToFind]
+    console.log(clue)
+    return (
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <Text style={{ fontSize: 16, fontStyle: 'italic', color: 'black' }}>
+          {clue}
+        </Text>
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-        <View style={{ width: '100%' }}>
-          {this.showList()}
-        </View>
-        <View style={styles.viewInstrStyle}>
-          {this.showInstructionMessage()}
-        </View>
-        
-        <View style={styles.viewWrappingQRButton}>
-          <TouchableOpacity 
-            onPress={this.buttonClicked.bind(this)}
-            activeOpacity={0.7}
-            style={styles.qrCodeButtonStyle}
-          >
-            <View style={{ width: '100%', height: '100%' }}>
-              <TabBarIcon
-                focused={true}
-                name={
-                  Platform.OS === 'ios'
-                    ? 'ios-add-circle-outline'
-                    : 'md-add'
-                }
-                size={100}
-                
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.viewPlotStyle}>
-          {this.showPlot()}
-        </View>
+          <View style={{ width: '100%' }}>
+            {this.showList()}
+          </View>
+          
+          <View style={styles.viewWrappingQRButton}>
+
+            {this.showClue()}
+
+            <TouchableOpacity 
+              onPress={this.buttonClicked.bind(this)}
+              activeOpacity={0.7}
+              style={styles.qrCodeButtonStyle}
+            >
+              <View style={{ width: '100%', height: '100%', padding: 10, }}>
+                <TabBarIcon
+                  focused={true}
+                  name={
+                    Platform.OS === 'ios'
+                      ? 'ios-add-circle-outline'
+                      : 'md-add'
+                  }
+                  size={100}
+                  
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </View>
     );

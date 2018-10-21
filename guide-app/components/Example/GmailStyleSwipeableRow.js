@@ -63,7 +63,6 @@ export default class GmailStyleSwipeableRow extends Component {
         friction={2}
         leftThreshold={80}
         rightThreshold={40}
-        renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}
         onSwipeableWillOpen={this.launchAndReset.bind(this)}>
         {children}
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   rightAction: {
     alignItems: 'flex-end',
     //backgroundColor: '#dd2c00',
-    flex: 1,
     justifyContent: 'center',
   },
 });

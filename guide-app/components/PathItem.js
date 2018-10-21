@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
+import { ExpandingCard } from './common/'
 import { 
     AdvancedCard,
     CardButton,
@@ -70,7 +71,8 @@ class PathItem extends Component {
             <View>
                 <AdvancedCard>
                     <TouchableHighlight
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: '100%', height
+                        : '100%' }}
                         underlayColor='lightgrey'
                     >
                         <View>

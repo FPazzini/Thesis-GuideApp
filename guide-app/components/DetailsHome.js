@@ -55,7 +55,8 @@ const DetailsHome = ({ imgPath, highlightedText, title, sectionIcon }) => {
             <ImageBackground 
                 style={{ width: '100%', height: '100%', zIndex: 0 }}
                 resizeMode='cover'
-                source={imgPath}>
+                source={imgPath}
+                blurRadius={3}>
                 <View style={{ width: GLOBALS.DEVICE_WIDTH, height: GLOBALS.DEVICE_HEIGHT, backgroundColor: 'rgba(0,0,0,.67)' }}>
                     <View style={{ padding: 10, zIndex: 1, width: GLOBALS.DEVICE_WIDTH, alignItems: 'center' }}>
                         {getTitleSized(title)}

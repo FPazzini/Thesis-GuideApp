@@ -20,29 +20,9 @@ export default class ReadingCarousel extends Component {
     }
     this.props = props;
     this._carousel = {};
-    this.init();
-  }
-
-  init(){
     this.state = {
-      videos: [
-        {
-          id: "WpIAc9by5iU",
-          thumbnail: "https://img.youtube.com/vi/D9ioyEvdggk/hqdefault.jpg",
-          title: "Led Zeppelin - Stairway To Heaven"
-        }, {
-          id: "sNPnbI1arSE",
-          thumbnail: "https://img.youtube.com/vi/sNPnbI1arSE/hqdefault.jpg",
-          title: "Eminem - My Name Is"
-        }, {
-          id: "VOgFZfRVaww",
-          thumbnail: "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
-          title: "Rap Devil"
-        }
-      ]
-    };
-
-    console.log("ThumbnailCarousel Props: ", this.props)
+      cardsContent: props.cardsContent
+    }
   }
 
   handleSnapToItem(index){
@@ -53,7 +33,9 @@ export default class ReadingCarousel extends Component {
     console.log("rendering,", index, item)
     return (
       <View style={{ height: '60%', marginTop: '20%', backgroundColor: 'green'}}>
-        <ExpandingCard />
+        <ExpandingCard>
+          <Text>{item.title}</Text>
+        </ExpandingCard>
       </View>
     );
   }
@@ -63,7 +45,7 @@ export default class ReadingCarousel extends Component {
       <View style={styles.rootView}>
         <Carousel
           ref={ (c) => { this._carousel = c; } }
-          data={this.state.videos}
+          data={this.state.cardsContent}
           renderItem={this._renderItem.bind(this)}
           onSnapToItem={this.handleSnapToItem.bind(this)}
           sliderWidth={360}

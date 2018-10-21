@@ -3,7 +3,6 @@ import {
   Alert,
   Linking,
   Dimensions,
-  LayoutAnimation,
   Text,
   View,
   StatusBar,
@@ -34,12 +33,8 @@ export default class QRReader extends Component {
   };
 
   _handleBarCodeRead = result => {
-    /*if (result.data !== this.state.lastScannedUrl) {
-      LayoutAnimation.spring();
-      this.setState({ lastScannedUrl: result.data });
-    }*/
     var res = result.data
-    LayoutAnimation.spring();
+    
     if (res !== this.state.lastScannedUrl) {
         if (res === "61W1DDPDETQVDO/O08A0N/J33JXBANT7GE/J") {
             this.setState({ lastScannedUrl: res })
