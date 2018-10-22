@@ -18,9 +18,13 @@ import {
   Card,
   CardSection,
   AdvancedCard,
+  HomeCard,
+  ExpandingCard,
 } from '../components/common'
 import { FlatList, RectButton } from 'react-native-gesture-handler';
+import Carousel from 'react-native-snap-carousel';
 import { WebBrowser, Icon, Constants } from 'expo';
+import ReadingCarousel from '../components/ReadingCarousel'
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
@@ -29,6 +33,8 @@ import PathItem from '../components/PathItem';
 import PathItemRow from '../components/PathItemRow'
 import AppleStyleSwipeableRow from '../components/Example/AppleStyleSwipeableRow';
 import GmailStyleSwipeableRow from '../components/Example/GmailStyleSwipeableRow';
+import CardsPath from '../components/CardsPath'
+import GLOBALS from '../constants/GlobalVars';
 
 const numCols = 1
 let idxItemToFind = 0
@@ -163,13 +169,42 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  //<View key={index} style={{width: '100%', height: GLOBALS.DEVICE_HEIGHT / 2}}>
+  //  <CardsPath item={item} />
+  //</View>
+  _renderItem = ( {item, index} ) => {
+    console.log("rendering,", index, item)
+    return (
+      <View style={{ height: '100%' }}>
+        <CardsPath item={item} />
+      </View>
+    );
+  }
+  
+  showCards () {
+    return (
+      <View style={{width: '100%', height: GLOBALS.DEVICE_HEIGHT / 2, alignItems: 'center', }}>
+        <View style={{ height: '100%', marginTop: 15 }}>
+          <Carousel
+            ref={ (c) => { this._carousel = c; } }
+            data={this.state.pathElements}
+            renderItem={this._renderItem.bind(this)}
+            sliderWidth={360}
+            itemWidth={256}
+            layout={'default'}
+            firstItem={0}
+          />
+        </View>
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <View style={{ width: '100%' }}>
-            {this.showList()}
-          </View>
+
+          {this.showCards()}
           
           <View style={styles.viewWrappingQRButton}>
 

@@ -48,7 +48,7 @@ const ExpandingCard = (props) => {
 const styles = {
   card: {
     width: '100%',
-    height: 270,
+    height: '100%',
     backgroundColor: "#fcfbf9",
   },
   name: {
