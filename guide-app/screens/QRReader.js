@@ -34,7 +34,6 @@ export default class QRReader extends Component {
 
   _handleBarCodeRead = result => {
     var res = result.data
-    
     if (res !== this.state.lastScannedUrl) {
         if (res === "61W1DDPDETQVDO/O08A0N/J33JXBANT7GE/J") {
             this.setState({ lastScannedUrl: res })
@@ -46,7 +45,12 @@ export default class QRReader extends Component {
             this.props.navigation.state.params.evaluateLevel('2')
             this.props.navigation.setParams({ level: '2' })
             this.props.navigation.goBack()
-        }
+        } else if (res === "E6P[06TG6[HZZKCSLJJ/EXK0DRQE1TB5RRWJ") {
+          this.setState({ lastScannedUrl: res })
+          this.props.navigation.state.params.evaluateLevel('2')
+          this.props.navigation.setParams({ level: '2' })
+          this.props.navigation.goBack()
+      }
     }
   };
 

@@ -49,7 +49,7 @@ export default class InfoScreen extends React.Component {
                 img: require('../assets/images/squalo-bianco.jpg'),
             },
           ],
-          currentItem: {},
+          currentItem: props.navigation.state.params.card,
           
         }
         this.scrollView = null;
@@ -61,10 +61,11 @@ export default class InfoScreen extends React.Component {
 
     // Calling getData in componentWillMount.
     componentWillMount () {
-        {this.getData(this.state.cardID)}
+        //{this.getData(this.state.cardID)}
     }
 
     componentDidMount () {
+        console.log("Element passed: ",this.state.currentItem)
     }
 
     // Function that verifies and sets the current item based on the cardID value received. 
@@ -75,6 +76,11 @@ export default class InfoScreen extends React.Component {
             case 1:
                 this.setState({ 
                     currentItem: this.state.data[0]
+                })
+                break
+            case 2:
+                this.setState({
+                    currentItem: this.state.data[1]
                 })
                 break
             default:

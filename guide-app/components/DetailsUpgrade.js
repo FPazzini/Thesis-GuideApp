@@ -39,7 +39,7 @@ export default class DetailsUpgrade extends Component {
             <View style={container}>
                 <DetailsHome 
                     imgPath={require('../assets/images/whiteshark.jpg')} 
-                    title='Riproduzione'
+                    title={this.state.item.description}
                 />
                 <DetailsAudio 
                     imgPath={require('../assets/images/whitesharkjumping.jpg')} 

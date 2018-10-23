@@ -25,12 +25,13 @@ const HomeCard = (props) => {
 
 const styles = {
     container: {
-        width: deviceWidth / 1.75,
-        height: '100%',
-        alignItems: 'center',
-        backgroundColor: 'orange',
 
-        shadowColor: '#000',
+        borderBottomLeftRadius: 7,
+        borderBottomRightRadius: 7,
+        borderTopLeftRadius: 7,
+        borderTopRightRadius: 7,
+
+        shadowColor: '#2C2C2C',
         shadowOffset: { width: 0, height: 2},
         shadowOpacity: 0.15,
         shadowRadius: 2,
@@ -41,7 +42,6 @@ const styles = {
     cardStyle: {
         width: deviceWidth / 1.75,
         height: 300,
-        backgroundColor: 'lightred',
     }
 }
 

@@ -59,12 +59,13 @@ export default class HomeScreen extends React.Component {
       {
         id: '2',
         avatar: require('../assets/images/gws.jpg'),
-        description: 'Secondo'
+        description: 'Dieta'
       }
     ],
     clues: [
       'Alcune specie di squali e dei loro parenti fanno uova che attaccano attraverso filamenti al fondo: trova le uova delle torpedini e dei gattucci, attenzione quelle delle torpedini sono scure',
       'Gli squali che hanno denti fatti come delle piastre mangiano animali con il corpo duro. Trova la preda del palombo, attenzione, non è un pesce, ha il corpo duro, due potenti chele e due macchie simili a occhi sulla coda',
+      'E\' un parente stretto degli squali, ma ha una forma appiattita, le sue fessure branchiali sono sul ventre',
     ],
     showExplanation: true,
 
@@ -124,14 +125,16 @@ export default class HomeScreen extends React.Component {
   }
 
   infoClicked = (item) => {
+    console.log("Clicked element: ",item)
     this.props.navigation.navigate('InfoScreen', {
-      cardID: item.id
+      cardID: item.id,
+      card: item,
     })
   }
 
   openQRSwiping (item) {
     this.props.navigation.navigate('InfoScreen', {
-      cardID: item.id
+      cardID: item.id,
     })
   }
 
@@ -175,26 +178,33 @@ export default class HomeScreen extends React.Component {
   _renderItem = ( {item, index} ) => {
     console.log("rendering,", index, item)
     return (
-      <View style={{ height: '100%' }}>
-        <CardsPath item={item} />
+      <View style={{ height: '90%', alignItems: 'center' }}>
+        <CardsPath item={item} infoButtonClicked={card => this.infoClicked(card)} />
       </View>
     );
   }
+
+  wp (percentage) {
+    const value = (percentage * GLOBALS.DEVICE_HEIGHT) / 100
+    return Math.round(value)
+  }
   
   showCards () {
+    const slideWidth = this.wp(75)
+    const itemHorizontalMargin = this.wp(2)
+    const sliderWidth = GLOBALS.DEVICE_WIDTH
+    const itemWidth = slideWidth + itemHorizontalMargin * 2
     return (
-      <View style={{width: '100%', height: GLOBALS.DEVICE_HEIGHT / 2, alignItems: 'center', }}>
-        <View style={{ height: '100%', marginTop: 15 }}>
-          <Carousel
-            ref={ (c) => { this._carousel = c; } }
-            data={this.state.pathElements}
-            renderItem={this._renderItem.bind(this)}
-            sliderWidth={360}
-            itemWidth={256}
-            layout={'default'}
-            firstItem={0}
-          />
-        </View>
+      <View style={{flex: 1, height: GLOBALS.DEVICE_HEIGHT / 2}}>
+        <Carousel
+          ref={ (c) => { this._carousel = c; } }
+          data={this.state.pathElements}
+          renderItem={this._renderItem.bind(this)}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth/2}
+          layout={'default'}
+          firstItem={0}
+        />
       </View>
     )
   }
