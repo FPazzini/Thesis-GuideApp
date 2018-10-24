@@ -38,7 +38,7 @@ class CardsPath extends Component {
 
         return (
             <View style={container}>
-                <HomeCard>
+                <HomeCard onPress={() => this.props.infoButtonClicked(this.state.item)}>
                     <View>
                         <View style={imageContainer}>
                             <ImageBackground 
@@ -48,17 +48,15 @@ class CardsPath extends Component {
                             >
                             </ImageBackground>
                         </View>
-                        <View style={{width: '100%'}}>
-                            <View style={titleContainer}>
-                                <View style={innerTitleViewStyle}>
-                                    <FontStyleEval 
-                                        text={this.state.item.description}
-                                        style={titleStyle}
-                                        textType={TEXT_CLASSES.TITLE}
-                                    />
-                                </View>
+                        <View style={{width: '100%', height: '30%'}}>
+                            <View style={{ flex: 1 }}>
+                                <FontStyleEval 
+                                    text={this.state.item.description}
+                                    style={titleStyle}
+                                    textType={TEXT_CLASSES.TITLE}
+                                />
                             </View>
-                            <View style={{flex: 1}}>
+                            <View style={{ flex: 1 }}>
                                 <Button onPress={() => this.props.infoButtonClicked(this.state.item)}>
                                     Dettagli
                                 </Button>
@@ -71,6 +69,21 @@ class CardsPath extends Component {
     }
 }
 
+//<View style={titleContainer}>
+//<View style={innerTitleViewStyle}>
+//<FontStyleEval 
+//    text={this.state.item.description}
+//    style={titleStyle}
+//    textType={TEXT_CLASSES.TITLE}
+///>
+//</View>
+//</View>
+//<View style={{ flex: 1, marginTop: 5, alignItems: 'center', justifyContent: 'center'}}>
+//<Button onPress={() => this.props.infoButtonClicked(this.state.item)}>
+//Dettagli
+//</Button>
+//</View>
+
 const styles = {
     container: {
         width: '100%', 
@@ -79,7 +92,7 @@ const styles = {
     },
     imageContainer: {
         width: '100%',
-        height: '60%',
+        height: '70%',
         overflow: 'hidden',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
@@ -92,7 +105,7 @@ const styles = {
     },
     titleContainer: {
         width: '100%',
-        height: '40%',
+        height: '30%',
         flexDirection: 'row',
 
         borderBottomLeftRadius: 7,
@@ -101,7 +114,7 @@ const styles = {
         borderTopRightRadius: 0,
     },
     innerTitleViewStyle: {
-        flex: 1,
+        flex: 2,
     },
     titleStyle: {
         fontWeight: '600',

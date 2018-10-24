@@ -4,11 +4,15 @@ import {
     Text,
     Image,
     TouchableOpacity,
+    Platform,
+    PixelRatio,
 } from 'react-native'
 import { MonoText } from './StyledText'
 import GLOBALS from '../constants/GlobalVars'
 
 const sectionFocusedSize = 40
+const width = 40 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
+const height = 40 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
 
 export default class MenuItems extends Component {
 
@@ -125,7 +129,7 @@ const styles = {
     },
     notActivatedItem: {
         padding: 7,
-        width: 40,
-        height: 40,
+        width: width,
+        height: height,
     }
 }

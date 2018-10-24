@@ -3,24 +3,53 @@ import {
     View,
     Text,
     TouchableHighlight,
+    TouchableWithoutFeedback,
     Dimensions,
+    Animated,
+    Easing,
 } from 'react-native'
 import { FontSizeEval } from '../FontSizeEval'
 
 const deviceWidth = Dimensions.get('window').width;
 
-const HomeCard = (props) => {
+const HomeCard = ({ onPress, children }) => {
 
-    const {
-        container,
-        cardStyle,
-    } = styles
+let scaleValue = new Animated.Value(0);
+
+    const cardScale = scaleValue.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 1.01, 1.05]
+    });
+
+    let transformStyle = { ...styles.container, transform: [{ scale: cardScale }] };
 
     return (
-        <View style={container}>
-            {props.children}
-        </View>
-    )
+        <TouchableWithoutFeedback
+            onPressIn={() => {
+                scaleValue.setValue(0);
+                Animated.timing(scaleValue, {
+                    toValue: 1,
+                    duration: 250,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }).start();
+                }}
+                onPressOut={() => {
+                Animated.timing(scaleValue, {
+                    toValue: 0,
+                    duration: 100,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }).start();
+                }}
+                onPress={onPress}
+            >
+            <Animated.View style={transformStyle}>
+                {children}
+            </Animated.View>
+        </TouchableWithoutFeedback>
+    );
+    
 }
 
 const styles = {

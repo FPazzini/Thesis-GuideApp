@@ -172,9 +172,6 @@ export default class HomeScreen extends React.Component {
     )
   }
 
-  //<View key={index} style={{width: '100%', height: GLOBALS.DEVICE_HEIGHT / 2}}>
-  //  <CardsPath item={item} />
-  //</View>
   _renderItem = ( {item, index} ) => {
     console.log("rendering,", index, item)
     return (
