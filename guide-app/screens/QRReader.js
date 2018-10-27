@@ -34,6 +34,7 @@ export default class QRReader extends Component {
 
   _handleBarCodeRead = result => {
     var res = result.data
+    console.log(res)
     if (res !== this.state.lastScannedUrl) {
         if (res === "61W1DDPDETQVDO/O08A0N/J33JXBANT7GE/J") {
             this.setState({ lastScannedUrl: res })

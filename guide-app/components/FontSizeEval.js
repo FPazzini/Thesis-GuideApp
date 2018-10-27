@@ -15,6 +15,9 @@ export const FontStyleEval = ({ style, textAlign, text, textType }) => {
     function chooseTextType () {
         let size = 12
         switch (textType) {
+            case TEXT_CLASSES.SUPER_TITLE:
+                size = evaluateSize(37)
+                break
             case TEXT_CLASSES.TITLE:
                 size = evaluateSize(25)
                 break;

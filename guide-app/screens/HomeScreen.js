@@ -20,7 +20,9 @@ import {
   AdvancedCard,
   HomeCard,
   ExpandingCard,
+  ModalContent,
 } from '../components/common'
+import Modal from 'react-native-modal'
 import { FlatList, RectButton } from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
 import { WebBrowser, Icon, Constants } from 'expo';
@@ -35,6 +37,8 @@ import AppleStyleSwipeableRow from '../components/Example/AppleStyleSwipeableRow
 import GmailStyleSwipeableRow from '../components/Example/GmailStyleSwipeableRow';
 import CardsPath from '../components/CardsPath'
 import GLOBALS from '../constants/GlobalVars';
+import { FontStyleEval } from '../components/FontSizeEval';
+import InfoPopup from '../components/InfoPopup';
 
 const numCols = 1
 let idxItemToFind = 0
@@ -68,7 +72,7 @@ export default class HomeScreen extends React.Component {
       'E\' un parente stretto degli squali, ma ha una forma appiattita, le sue fessure branchiali sono sul ventre',
     ],
     showExplanation: true,
-
+    showErrorMessage: false,
   }
  
   showExplanationText () {
@@ -121,6 +125,9 @@ export default class HomeScreen extends React.Component {
       })
     } else {
       // Show alert or something saying the focused QR code is not the right one, at this particular time. 
+      this.setState({
+        showErrorMessage: true,
+      })
     }
   }
 
@@ -164,10 +171,22 @@ export default class HomeScreen extends React.Component {
     var clue = this.state.clues[idxItemToFind]
     console.log(clue)
     return (
-      <View style={{ flex: 1, alignItems: 'center' }}>
-        <Text style={{ fontSize: 16, fontStyle: 'italic', color: 'black' }}>
-          {clue}
-        </Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, width: '100%',}}>
+          <FontStyleEval
+            text="Indizio"
+            textType="supertitle"
+            style={{ marginLeft: 5, fontWeight: '600' }}
+          />
+        </View>
+        <View style={{ flex: 1, width: '100%', marginTop: 4 }}>
+          <FontStyleEval 
+            text={clue}
+            textAlign="justify"
+            textType="section"
+            style={{ marginLeft: 5, marginRight: 5, lineHeight: 25 }}
+          />
+        </View>
       </View>
     )
   }
@@ -191,19 +210,58 @@ export default class HomeScreen extends React.Component {
     const itemHorizontalMargin = this.wp(2)
     const sliderWidth = GLOBALS.DEVICE_WIDTH
     const itemWidth = slideWidth + itemHorizontalMargin * 2
-    return (
-      <View style={{flex: 1, height: GLOBALS.DEVICE_HEIGHT / 2}}>
-        <Carousel
-          ref={ (c) => { this._carousel = c; } }
-          data={this.state.pathElements}
-          renderItem={this._renderItem.bind(this)}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth/2}
-          layout={'default'}
-          firstItem={0}
-        />
-      </View>
-    )
+    if (this.state.pathElements.length === 0) {
+      return (
+        <View style={{ flex: 1, height: GLOBALS.DEVICE_HEIGHT / 2, alignItems: 'center', justifyContent: 'center' }}>
+          <Image 
+            source={require('../assets/images/instructions.png')}
+            style={{width: '100%', height: '100%', resizeMode: 'contain' }} 
+          />
+        </View>
+      )
+    } else {
+      return (
+        <View style={{flex: 1, height: GLOBALS.DEVICE_HEIGHT / 2}}>
+          <Carousel
+            ref={ (c) => { this._carousel = c; } }
+            data={this.state.pathElements}
+            renderItem={this._renderItem.bind(this)}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth/2}
+            layout={'default'}
+            firstItem={0}
+          />
+        </View>
+      )
+    }
+  }
+
+  showWrongQrMessage () {
+    console.log("arrivato errore")
+    if (this.state.showErrorMessage) {
+      setTimeout(() => {
+        this.setState({
+          showErrorMessage: false
+        })
+      }, 3000)
+    
+      return ( 
+        <View>
+          <Modal
+            isVisible={true}
+            onSwipe={() => this.setState({ showErrorMessage: false })}
+            swipeDirection="down">
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <FontStyleEval
+                text="QR errato!"
+                textType="supertitle"
+                style={{ fontWeight: '600', color: 'white' }}
+              />
+            </View>
+          </Modal>
+        </View>
+      )
+    }
   }
 
   render() {
@@ -231,11 +289,13 @@ export default class HomeScreen extends React.Component {
                       : 'md-add'
                   }
                   size={100}
-                  
                 />
               </View>
             </TouchableOpacity>
           </View>
+          
+          {this.showWrongQrMessage()}
+        
         </ScrollView>
       </View>
     );
