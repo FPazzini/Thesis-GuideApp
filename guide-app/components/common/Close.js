@@ -27,11 +27,12 @@ const Close = (props) => {
 
 const styles = {
     viewStyle: {
-        right: 5,
+        width: '100%',
+        height: 60,
         top: 15,
         position: 'absolute',
         zIndex: 1,
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'center',
         padding: 10,
     }

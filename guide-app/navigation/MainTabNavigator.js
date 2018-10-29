@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Easing, Animated } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import Colors from '../constants/Colors.js'
 
@@ -16,7 +16,7 @@ const HomeStack = createStackNavigator(
     screen: HomeScreen
   },
   Links: {
-    screen: LinksScreen
+    screen: LinksScreen,
   },
   QRReader: {
     screen: QRReaderScreen,
@@ -33,6 +33,8 @@ const HomeStack = createStackNavigator(
 },
 {
   initialRouteName: 'Home',
+  headerMode: "screen", // By using "screen", we let the header stay at its position during the scren vertical transition defined below.
+  mode:"modal", // By using "modal", we allow the top-to-bottom gesture to close the screen and go back to the previous one.
   /* The header config from HomeScreen is now here */
   navigationOptions: {
     headerStyle: {
@@ -43,6 +45,30 @@ const HomeStack = createStackNavigator(
       fontWeight: 'bold',
     },
   },
+  transitionConfig: () => ({
+    transitionSpec: {
+      duration: 700,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+    },
+    screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps;
+      const { index } = scene;
+
+      const height = layout.initHeight;
+      const translateY = position.interpolate({
+        inputRange: [index - 1, index, index + 1],
+        outputRange: [height, 0, 0],
+      });
+
+      const opacity = position.interpolate({
+        inputRange: [index - 1, index - 0.99, index],
+        outputRange: [0, 1, 1],
+      });
+
+      return { opacity, transform: [{ translateY }] };
+    },
+  }),
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
