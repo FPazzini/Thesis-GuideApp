@@ -73,7 +73,7 @@ export default class MenuItems extends Component {
                     this.props.doScroll(0)}
                 }>
                     <MonoText style={styles.textStyle}>
-                        <Image source={this.state.activated[0] ? require('../assets/icons/shark-outline.png') : require('../assets/icons/shark.png')} style={styles.notActivatedItem} />
+                        <Image source={this.state.activated[0] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/shark.png')} style={styles.notActivatedItem} />
                     </MonoText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {

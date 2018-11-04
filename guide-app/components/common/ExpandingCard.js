@@ -49,7 +49,11 @@ const styles = {
   card: {
     width: '100%',
     height: '100%',
-    backgroundColor: "#fcfbf9",
+    backgroundColor: '#2D2C2C',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
   },
   name: {
     fontSize: 15,

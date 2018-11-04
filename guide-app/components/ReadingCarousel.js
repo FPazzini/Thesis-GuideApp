@@ -9,7 +9,8 @@ import {
 } from 'react-native'
 import Carousel from 'react-native-snap-carousel';
 import { FontStyleEval } from './FontSizeEval';
-import { ModalHeader, ExpandingCard } from './common/'
+import { ModalHeader, ExpandingCard, Card } from './common/'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class ReadingCarousel extends Component {
 
@@ -29,13 +30,48 @@ export default class ReadingCarousel extends Component {
     console.log("snapped to ", index)
   }
 
+  getContentSized (text) {
+    return (
+        <View style={{ alignSelf: 'flex-start' }}>
+          <FontStyleEval 
+              style={{ lineHeight: 20, color: 'white', padding: 5, }}
+              text={text}
+              textAlign="justify"
+              textType="section"
+          />
+        </View>
+    )
+  }
+
+  getTitleSized (text) {
+    return (
+        <View style={{ alignSelf: 'flex-start' }}>
+          <FontStyleEval 
+              style={{ color: 'white', marginLeft: 3, padding: 5, }}
+              text={text}
+              textAlign="justify"
+              textType="supertitle"
+          />
+        </View>
+    )
+  }
+
   _renderItem = ( {item, index} ) => {
     console.log("rendering,", index, item)
     return (
-      <View style={{ height: '60%', marginTop: '20%', backgroundColor: 'green'}}>
-        <ExpandingCard>
-          <Text>{item.title}</Text>
-        </ExpandingCard>
+      <View style={{ 
+        height: '70%',
+        marginTop: '20%' }}>
+        <Card>
+          <ScrollView>
+            <View style={{ flex: 1 }}>
+              <View style={{ borderBottomColor: '#053FA9', borderBottomWidth: 1 }}>
+                {this.getTitleSized(item.title)}
+              </View>
+              {this.getContentSized(item.content)}
+            </View>
+          </ScrollView>
+        </Card>
       </View>
     );
   }
@@ -66,7 +102,6 @@ const styles = {
   cardStyle: {
     width: '100%', 
     height: '100%', 
-    backgroundColor: '#fcfbf9', 
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     borderBottomRightRadius: 10,

@@ -35,11 +35,13 @@ export default class DetailsUpgrade extends Component {
             container,
         } = styles
         
+        //<DetailsHome imgPath={require('../assets/images/whiteshark.jpg')} title={this.state.item.description}/>
+        
         return (
             <View style={container}>
-                <DetailsHome 
-                    imgPath={require('../assets/images/whiteshark.jpg')} 
-                    title={this.state.item.description}
+                <DetailsReading 
+                    imgPath={require('../assets/images/whiteshark.jpg')}
+                    title='Leggi'
                 />
                 <DetailsAudio 
                     imgPath={require('../assets/images/whitesharkjumping.jpg')} 
@@ -47,14 +49,14 @@ export default class DetailsUpgrade extends Component {
                     pauseIcon={require('../assets/icons/pause2.png')}
                     title='Ascolta'
                 />
-                <DetailsReading 
-                    imgPath={require('../assets/images/hammerhead1.jpg')}
-                    title='Leggi'
-                />
+
+                <DetailsHome imgPath={require('../assets/images/whiteshark.jpg')} title={this.state.item.description}/>
+                
                 <DetailsVideo 
                     imgPath={require('../assets/images/gws.jpg')}
                     title='Guarda'
                 />
+                
             </View>
         )
     }

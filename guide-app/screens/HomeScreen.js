@@ -21,6 +21,10 @@ import {
   HomeCard,
   ExpandingCard,
   ModalContent,
+  Clue,
+  Win,
+  ScanButton,
+  Socials,
 } from '../components/common'
 import Modal from 'react-native-modal'
 import { FlatList, RectButton } from 'react-native-gesture-handler';
@@ -57,7 +61,7 @@ export default class HomeScreen extends React.Component {
     steps: [
       {
         id: '1',
-        avatar: require('../assets/images/squalo-bianco.jpg'), 
+        avatar: require('../assets/images/uova1.png'), 
         description: 'Riproduzione'
       },
       {
@@ -69,7 +73,7 @@ export default class HomeScreen extends React.Component {
     clues: [
       'Alcune specie di squali e dei loro parenti fanno uova che attaccano attraverso filamenti al fondo: trova le uova delle torpedini e dei gattucci, attenzione quelle delle torpedini sono scure',
       'Gli squali che hanno denti fatti come delle piastre mangiano animali con il corpo duro. Trova la preda del palombo, attenzione, non è un pesce, ha il corpo duro, due potenti chele e due macchie simili a occhi sulla coda',
-      'E\' un parente stretto degli squali, ma ha una forma appiattita, le sue fessure branchiali sono sul ventre',
+      
     ],
     showExplanation: true,
     showErrorMessage: false,
@@ -168,27 +172,23 @@ export default class HomeScreen extends React.Component {
   }
 
   showClue () {
-    var clue = this.state.clues[idxItemToFind]
-    console.log(clue)
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, width: '100%',}}>
-          <FontStyleEval
-            text="Indizio"
-            textType="supertitle"
-            style={{ marginLeft: 5, fontWeight: '600' }}
-          />
+    if (idxItemToFind !== this.state.clues.length) {
+      var clue = this.state.clues[idxItemToFind]
+      return (
+        <View>
+          <Clue clueTitle={"Indizio"} clue={clue}/>
+          <View style={{alignItems: 'center'}}>
+            <ScanButton onPress={() => this.buttonClicked()} />
+          </View>
         </View>
-        <View style={{ flex: 1, width: '100%', marginTop: 4 }}>
-          <FontStyleEval 
-            text={clue}
-            textAlign="justify"
-            textType="section"
-            style={{ marginLeft: 5, marginRight: 5, lineHeight: 25 }}
-          />
+      )
+    } else {
+      return (
+        <View>
+          <Win />
         </View>
-      </View>
-    )
+      )
+    }
   }
 
   _renderItem = ( {item, index} ) => {
@@ -271,28 +271,7 @@ export default class HomeScreen extends React.Component {
 
           {this.showCards()}
           
-          <View style={styles.viewWrappingQRButton}>
-
-            {this.showClue()}
-
-            <TouchableOpacity 
-              onPress={this.buttonClicked.bind(this)}
-              activeOpacity={0.7}
-              style={styles.qrCodeButtonStyle}
-            >
-              <View style={{ width: '100%', height: '100%', padding: 10, }}>
-                <TabBarIcon
-                  focused={true}
-                  name={
-                    Platform.OS === 'ios'
-                      ? 'ios-add-circle-outline'
-                      : 'md-add'
-                  }
-                  size={100}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
+          {this.showClue()}
           
           {this.showWrongQrMessage()}
         
@@ -446,9 +425,6 @@ const styles = StyleSheet.create({
   plotStyle: {
     fontSize: 17,
     fontStyle: 'italic',
-  },
-  qrCodeButtonStyle: {
-
   },
   descriptionRowStyle: {
     width: '60%',
