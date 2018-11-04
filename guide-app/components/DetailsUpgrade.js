@@ -41,6 +41,7 @@ export default class DetailsUpgrade extends Component {
             <View style={container}>
                 <DetailsReading 
                     imgPath={require('../assets/images/whiteshark.jpg')}
+                    readings={this.state.item.readingSection}
                     title='Leggi'
                 />
                 <DetailsAudio 

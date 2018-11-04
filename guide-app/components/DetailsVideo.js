@@ -60,7 +60,7 @@ const DetailsVideo = ({ imgPath, highlightedText, title, sectionIcon }) => {
                         {getTitleSized(title)}
                     </View>
                     <WebView
-                        source={{uri: 'https://www.youtube.com/embed/qzXykv6-3xM'}}
+                        source={{uri: 'https://www.youtube.com/embed/BYWoJGtozoc'}}
                         onNavigationStateChange={this.onNavigationStateChange}
                         startInLoadingState
                         scalesPageToFit
