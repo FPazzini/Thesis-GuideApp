@@ -28,7 +28,7 @@ let idxItemToFind = 0
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Avventura',
+    title: 'Caccia al QR',
   };
 
   state = {
@@ -106,7 +106,6 @@ export default class HomeScreen extends React.Component {
     clues: [
       'Alcune specie di squali e dei loro parenti fanno uova che attaccano attraverso filamenti al fondo: trova le uova delle torpedini e dei gattucci, attenzione quelle delle torpedini sono scure',
       'Gli squali che hanno denti fatti come delle piastre mangiano animali con il corpo duro. Trova la preda del palombo, attenzione, non è un pesce, ha il corpo duro, due potenti chele e due macchie simili a occhi sulla coda',
-      
     ],
     showExplanation: true,
     showErrorMessage: false,

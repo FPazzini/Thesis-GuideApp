@@ -50,8 +50,6 @@ export default class DetailsUpgrade extends Component {
                     pauseIcon={require('../assets/icons/pause2.png')}
                     title='Ascolta'
                 />
-
-                <DetailsHome imgPath={require('../assets/images/whiteshark.jpg')} title={this.state.item.description}/>
                 
                 <DetailsVideo 
                     imgPath={require('../assets/images/gws.jpg')}

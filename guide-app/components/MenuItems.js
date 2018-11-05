@@ -9,6 +9,8 @@ import {
 } from 'react-native'
 import { MonoText } from './StyledText'
 import GLOBALS from '../constants/GlobalVars'
+import { FontStyleEval } from './FontSizeEval';
+import { MenuItem } from './common';
 
 const sectionFocusedSize = 40
 const width = 40 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
@@ -72,38 +74,43 @@ export default class MenuItems extends Component {
                     this.activate(0)
                     this.props.doScroll(0)}
                 }>
-                    <MonoText style={styles.textStyle}>
-                        <Image source={this.state.activated[0] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/shark.png')} style={styles.notActivatedItem} />
-                    </MonoText>
+                    <MenuItem 
+                        iconSource={this.state.activated[0] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/open-book.png')}
+                        text={'Leggi'}
+                     />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
                     this.activate(1)
                     this.props.doScroll((GLOBALS.DEVICE_HEIGHT))}
                 }>
-                    <MonoText style={styles.textStyle}>
-                        <Image source={this.state.activated[1] ? require('../assets/icons/play-button-outline.png') : require('../assets/icons/play-button.png')} style={styles.notActivatedItem} />
-                    </MonoText>
+                    <MenuItem 
+                        iconSource={this.state.activated[1] ? require('../assets/icons/play-button-outline.png') : require('../assets/icons/play-button.png')}
+                        text={'Ascolta'}
+                     />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    this.activate(2)
-                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}
-                }>
-                    <MonoText style={styles.textStyle}>
-                        <Image source={this.state.activated[2] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/open-book.png')} style={styles.notActivatedItem} />
-                    </MonoText>
-                </TouchableOpacity>
+                
                 <TouchableOpacity onPress={() => {
                     this.activate(3)
-                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 3))}
+                    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}
                 }>
-                    <MonoText style={styles.textStyle}>
-                        <Image source={this.state.activated[3] ? require('../assets/icons/youtube-outline.png') : require('../assets/icons/youtube.png')} style={styles.notActivatedItem} />
-                    </MonoText>
+                    <MenuItem 
+                        iconSource={this.state.activated[2] ? require('../assets/icons/youtube-outline.png') : require('../assets/icons/youtube.png')}
+                        text={'Guarda'}
+                     />
                 </TouchableOpacity>
             </View>
         )
     }
 }
+
+// <TouchableOpacity onPress={() => {
+//    this.activate(2)
+//    this.props.doScroll((GLOBALS.DEVICE_HEIGHT * 2))}
+//}>
+//    <MonoText style={styles.textStyle}>
+//        <Image source={this.state.activated[2] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/open-book.png')} style={styles.notActivatedItem} />
+//    </MonoText>
+//</TouchableOpacity>
 
 const styles = {
     textStyle: {
@@ -113,14 +120,23 @@ const styles = {
         fontWeight: '200',
     },
     viewTextStyle: {
-        flex: 1,
+        width: '100%',
         flexDirection: 'row',
         position: 'absolute',
         bottom: 20,
-        alignSelf:'center',
         alignItems: 'center',
-        margin: 5,
+        justifyContent: 'center',
         zIndex: 1,
+    },
+    singleItem: {
+        backgroundColor: 'yellow',
+        margin: 5,
+    },
+    topSection: {
+
+    },
+    bottomSection: {
+
     },
     activatedItem: {
         padding: 7,
