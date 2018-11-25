@@ -14,6 +14,7 @@ import DetailsAudio from './DetailsAudio'
 import DetailsReading from './DetailsReading'
 import DetailsVideo from './DetailsVideo'
 import InfoPopup from './InfoPopup';
+import DetailsGallery from './DetailsGallery';
 
 export default class DetailsUpgrade extends Component {
     
@@ -25,7 +26,6 @@ export default class DetailsUpgrade extends Component {
     }
 
     componentDidMount () {
-        console.log(this.state.item)
     }
 
 
@@ -49,6 +49,12 @@ export default class DetailsUpgrade extends Component {
                     playIcon={require('../assets/icons/play2.png')}
                     pauseIcon={require('../assets/icons/pause2.png')}
                     title='Ascolta'
+                />
+
+                <DetailsGallery 
+                    imgPath={require('../assets/images/whiteshark.jpg')}
+                    galleryImages={this.state.item.gallerySection}
+                    title="Galleria"
                 />
                 
                 <DetailsVideo 

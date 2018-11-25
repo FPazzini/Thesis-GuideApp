@@ -63,11 +63,12 @@ export default class ReadingCarousel extends Component {
         height: '70%',
         marginTop: '20%' }}>
         <Card>
+          <View style={{ borderBottomColor: '#053FA9', borderBottomWidth: 1 }}>
+            {this.getTitleSized(item.title)}
+          </View>
           <ScrollView>
             <View style={{ flex: 1 }}>
-              <View style={{ borderBottomColor: '#053FA9', borderBottomWidth: 1 }}>
-                {this.getTitleSized(item.title)}
-              </View>
+              
               {this.getContentSized(item.content)}
             </View>
           </ScrollView>

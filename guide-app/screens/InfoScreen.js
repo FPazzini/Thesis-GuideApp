@@ -21,7 +21,7 @@ import {
   AdvancedCard,
   Close,
 } from '../components/common'
-import { WebBrowser, Icon, Constants } from 'expo';
+import { WebBrowser, Icon, Constants, ScreenOrientation } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
@@ -66,6 +66,7 @@ export default class InfoScreen extends React.Component {
 
     componentDidMount () {
         console.log("Element passed: ",this.state.currentItem)
+        
     }
 
     // Function that verifies and sets the current item based on the cardID value received. 

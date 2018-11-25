@@ -5,11 +5,12 @@ import {
     TouchableOpacity,
     Image,
     Platform,
+    PixelRatio,
 } from 'react-native'
 import { MonoText } from '../StyledText'
 
-const width = 40 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
-const height = 40 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
+const width = 40 * (Platform.OS === 'ios' ? 1 : (PixelRatio.get() === 1 ? 0.33 : PixelRatio.get()));
+const height = 40 * (Platform.OS === 'ios' ? 1 : (PixelRatio.get() === 1 ? 0.33 : PixelRatio.get()));
 
 const MenuItem = ({ iconSource, text }) => {
     return (

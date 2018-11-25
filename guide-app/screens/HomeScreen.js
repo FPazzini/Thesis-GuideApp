@@ -72,35 +72,43 @@ export default class HomeScreen extends React.Component {
       },
       {
         id: '2',
-        avatar: require('../assets/images/gws.jpg'),
+        avatar: require('../assets/images/tooth.jpg'),
         description: 'Dieta',
         readingSection: [
         {
           id: "WpIAc9by5iU",
           thumbnail: "https://img.youtube.com/vi/D9ioyEvdggk/hqdefault.jpg",
-          content: "Heilà",
-          title: "Guscio"
+          content: "I denti degli squali e dei loro parenti, le razze, sono molto vari. Ci sono specie con denti aguzzi, adatti ad addentare prede dal corpo molle. In altre specie, i denti sono più simili a piastre, più o meno fuse fra di loro, adatte a triturare organismi dal corpo duro, spesso dotati di un guscio. Infine i filtratori, come lo squalo elefante e lo squalo balena, hanno denti ridottissimi.",
+          title: "Denti"
         }, {
           id: "sNPnbI1arSE",
           thumbnail: "https://img.youtube.com/vi/sNPnbI1arSE/hqdefault.jpg",
-          content: "Lo sviluppo dell’embrione può durare anche diversi mesi e, di solito, dopo alcune settimane dalla deposizione delle uova, sul guscio si aprono due sottili fessure per permettere la circolazione dell’acqua, che viene favorita anche dal movimento dell’embrione. Alla schiusa il piccolo è come un adulto in miniatura.",
-          title: "Sviluppo"
+          content: " Il palombo ha una dieta varia. Anche se mangia soprattutto crostacei, negli stomaci si possono trovare pannocchie, granchi, vermi, e persino pesci.",
+          title: "Dieta"
         }, {
           id: "VOgFZfRVaww",
           thumbnail: "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
-          content: "Le uova possono avere forme molto diverse e dalle uova si può riconoscere la specie di appartenenza! Le uova possono essere allungate come quelle del gattuccio, oppure più larghe come quelle delle torpedini. In alcuni casi possono anche avere un guscio spiralato, per ancorare l’uovo meglio al fondo e rendere più difficile la rimozione da parte di predatori.",
-          title: "Aspetto"
-        }, {
-          id: "PXRUhtdlI2U",
-          thumbail: "",
-          content: "Le uova di squali e razze si possono trovare attaccate sul fondo.\nLe tegnúe di Chioggia sono un ambiente dove il gattopardo, Scyliorhinus stellaris, spesso depone le uova. Le uova possono trovarsi attaccate alle rocce o alle gorgonie.\nI gusci vuoti possono trovarsi anche sulle spiagge, specialmente dopo le mareggiate.",
-          title: "Luogo"
-        }, {
-          id: "jskRYhlStOy",
-          thumbail: "",
-          content: "Le uova di squali e razze vengono comunemente chiamate borsette o borsellini delle sirene.\nSpesso le uova vuote, dopo che il piccolo ne è uscito, vengono infatti trovate sulle spiagge e sembrano proprio delle piccole borsette.",
-          title: "Lo sapevi?"
+          content: "La pannocchia (detta anche canocchia o cicala di mare) è un crostaceo che vive sui fondali sabbiosi. Sulla parte terminale del corpo, detta telson, ha due macchie a forma di occhio, utili per spaventare i predatori. Ha due potenti chele che usa ome dei martelli: con le chele è in grado di spaccare i gusci dei molluschi bivalvi!!",
+          title: "La pannocchia"
         }],
+        gallerySection: [
+          {
+            id: '1',
+            img: require('../assets/images/tooth.jpg')
+          },
+          {
+            id: '2',
+            img: require('../assets/images/tooth.jpg')
+          },
+          {
+            id: '3',
+            img: require('../assets/images/tooth.jpg')
+          },
+          {
+            id: '4',
+            img: require('../assets/images/tooth.jpg')
+          },
+        ],
       }
     ],
     clues: [
@@ -180,29 +188,7 @@ export default class HomeScreen extends React.Component {
       cardID: item.id,
     })
   }
-
-  renderList = ({ item }) => {
-    LayoutAnimation.linear()
-    return (
-      <GmailStyleSwipeableRow launchOnSwipe={() => this.openQRSwiping(item)}>
-        <View>
-          <PathItem item={item} infoButtonClicked={card => this.infoClicked(card)} /> 
-        </View>
-      </GmailStyleSwipeableRow>
-    );
-  }
-
-  showList () {
-    return (
-      <FlatList
-        data={this.state.pathElements}
-        renderItem={this.renderList}
-        numColumns={numCols}
-        keyExtractor={item => item.id}
-      />
-    )
-  }
-
+  
   showClue () {
     if (idxItemToFind !== this.state.clues.length) {
       var clue = this.state.clues[idxItemToFind]
