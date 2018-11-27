@@ -34,20 +34,30 @@ const DetailsGallery = ({ imgPath, title, galleryImages }) => {
         )
     }
 
+    function getDescription (itemTitle) {
+        return (
+            <View style={{ marginTop: 5, borderColor: '#1b1a1a', borderTopWidth: 0.5, justifyContent: 'center'}}>
+                <FontStyleEval
+                    text={itemTitle}
+                    style={{ fontWeight: '200', color: 'white', padding: 5, marginLeft: 5 }}
+                    textType="section"
+                />
+            </View>
+        )
+    }
+
     function renderList ({item}) {
         return (
-            <View>
+            <View style={{ height: '50%', margin: 7, }}>
                 <SquaredCard>
-                    <TouchableOpacity
-                        style={{ width: '100%', height: '100%' }}
-                        underlayColor='lightgrey'
-                    >
-                        <View style={{ borderTopRightRadius: 7, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, borderBottomRightRadius: 7, }}>
-                            <View style={styles.innerViewStyle}>
-                                <Image style={styles.image} source={item.img} />
-                            </View>
+                    <View style={{ flex: 1, borderTopRightRadius: 7, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, borderBottomRightRadius: 7, }}>
+                        <View style={styles.innerViewStyle}>
+                            <Image style={styles.image} source={item.img} />
                         </View>
-                    </TouchableOpacity>
+                        <View style={{ flex: 2 }}>
+                            {getDescription(item.itemTitle)}
+                        </View>
+                    </View>
                 </SquaredCard>
             </View>
         );
@@ -61,7 +71,7 @@ const DetailsGallery = ({ imgPath, title, galleryImages }) => {
                     <FlatList
                         data={newImgs}
                         renderItem={renderList.bind(this)}
-                        numColumns={numCols}
+                        horizontal={true}
                         keyExtractor={item => item.id}
                     />
                     <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'flex-start' }}>
@@ -80,7 +90,7 @@ const DetailsGallery = ({ imgPath, title, galleryImages }) => {
                     <FlatList
                         data={galleryImages}
                         renderItem={renderList.bind(this)}
-                        numColumns={numCols}
+                        horizontal={true}
                         keyExtractor={item => item.id}
                     />
                 </View>
@@ -96,15 +106,12 @@ const DetailsGallery = ({ imgPath, title, galleryImages }) => {
                 source={imgPath}
                 blurRadius={3}>
                 <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,.67)' }}>
-                    <View style={{ flex: 0.5, padding: 10, zIndex: 1, alignItems: 'center' }}>
+                    <View style={{ flex: 2, padding: 10, zIndex: 1, alignItems: 'center' }}>
                         {getTitleSized(title)}
                     </View>
-                    <View style={{ flex: 8, zIndex: 1, alignItems: 'center'}}>
+                    <View style={{ flex: 6, zIndex: 1, alignItems: 'center'}}>
                         {isToShowMore()}
                     </View>
-                    
-                    
-                    
                 </View>
             </ImageBackground>
         </View>
@@ -142,8 +149,7 @@ const styles = {
         color: 'white',
     },
     innerViewStyle: {
-        width: '100%',
-        height: '100%',
+        flex: 4,
         borderTopRightRadius: 7,
         borderTopLeftRadius: 7,
         borderBottomLeftRadius: 7,
@@ -152,7 +158,7 @@ const styles = {
     image: {
         width: '100%',
         height: '100%',
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
     },
     infoStyle: {
         color: 'white',

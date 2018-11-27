@@ -15,8 +15,8 @@ const SquaredCard = (props) => {
 const styles = {
     containerStyle: {
 
-        width: deviceWidth / 2 - 5,
-        height: deviceHeight / 3.3,
+        width: deviceWidth / 1.15,
+        height: deviceHeight / 2.5,
 
         backgroundColor: '#2D2C2C',
 
@@ -25,15 +25,10 @@ const styles = {
         borderBottomLeftRadius: 7,
         borderBottomRightRadius: 7,
 
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: '#ddd',
-        borderBottomWidth: 1,
-
         // Shadow
-        shadowColor: '#ddd',
+        shadowColor: '#000000',
         shadowOffset: { width: 0, height: 3},
-        shadowOpacity: 0.15,
+        shadowOpacity: 0.50,
         shadowRadius: 2,
         
         // Other

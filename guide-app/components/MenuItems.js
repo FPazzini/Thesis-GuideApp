@@ -75,7 +75,7 @@ export default class MenuItems extends Component {
                     this.props.doScroll(0)}
                 }>
                     <MenuItem 
-                        iconSource={this.state.activated[0] ? require('../assets/icons/open-book-outline.png') : require('../assets/icons/open-book.png')}
+                        iconSource={this.state.activated[0] ? require('../assets/icons/gallery-outline.png') : require('../assets/icons/gallery.png')}
                         text={'Leggi'}
                      />
                 </TouchableOpacity>
@@ -84,8 +84,8 @@ export default class MenuItems extends Component {
                     this.props.doScroll((GLOBALS.DEVICE_HEIGHT))}
                 }>
                     <MenuItem 
-                        iconSource={this.state.activated[1] ? require('../assets/icons/play-button-outline.png') : require('../assets/icons/play-button.png')}
-                        text={'Ascolta'}
+                        iconSource={this.state.activated[1] ? require('../assets/icons/carousel-outline.png') : require('../assets/icons/carousel.png')}
+                        text={'Galleria'}
                      />
                 </TouchableOpacity>
                 

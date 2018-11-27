@@ -36,7 +36,8 @@ export default class DetailsUpgrade extends Component {
         } = styles
         
         //<DetailsHome imgPath={require('../assets/images/whiteshark.jpg')} title={this.state.item.description}/>
-        
+        //<DetailsAudio imgPath={require('../assets/images/whitesharkjumping.jpg')}  playIcon={require('../assets/icons/play2.png')} pauseIcon={require('../assets/icons/pause2.png')} title='Ascolta' />
+
         return (
             <View style={container}>
                 <DetailsReading 
@@ -44,13 +45,7 @@ export default class DetailsUpgrade extends Component {
                     readings={this.state.item.readingSection}
                     title='Leggi'
                 />
-                <DetailsAudio 
-                    imgPath={require('../assets/images/whitesharkjumping.jpg')} 
-                    playIcon={require('../assets/icons/play2.png')}
-                    pauseIcon={require('../assets/icons/pause2.png')}
-                    title='Ascolta'
-                />
-
+                
                 <DetailsGallery 
                     imgPath={require('../assets/images/whiteshark.jpg')}
                     galleryImages={this.state.item.gallerySection}

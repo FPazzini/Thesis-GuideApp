@@ -69,6 +69,18 @@ export default class HomeScreen extends React.Component {
           content: "Le uova di squali e razze vengono comunemente chiamate borsette o borsellini delle sirene.\nSpesso le uova vuote, dopo che il piccolo ne è uscito, vengono infatti trovate sulle spiagge e sembrano proprio delle piccole borsette.",
           title: "Lo sapevi?"
         }],
+        gallerySection: [
+          {
+            id: '1',
+            img: require('../assets/images/uova2mod.png'),
+            itemTitle: 'Piastre Aquila di Mare: piastre per triturare prede con corpi duri'
+          },
+          {
+            id: '2',
+            img: require('../assets/images/uova3.png'),
+            itemTitle: 'Granchio: parte della dieta della pannocchia'
+          },
+        ],
       },
       {
         id: '2',
@@ -78,8 +90,8 @@ export default class HomeScreen extends React.Component {
         {
           id: "WpIAc9by5iU",
           thumbnail: "https://img.youtube.com/vi/D9ioyEvdggk/hqdefault.jpg",
-          content: "I denti degli squali e dei loro parenti, le razze, sono molto vari. Ci sono specie con denti aguzzi, adatti ad addentare prede dal corpo molle. In altre specie, i denti sono più simili a piastre, più o meno fuse fra di loro, adatte a triturare organismi dal corpo duro, spesso dotati di un guscio. Infine i filtratori, come lo squalo elefante e lo squalo balena, hanno denti ridottissimi.",
-          title: "Denti"
+          content: "La pannocchia (detta anche canocchia o cicala di mare) è un crostaceo che vive sui fondali sabbiosi. Sulla parte terminale del corpo, detta telson, ha due macchie a forma di occhio, utili per spaventare i predatori. Ha due potenti chele che usa ome dei martelli: con le chele è in grado di spaccare i gusci dei molluschi bivalvi!!",
+          title: "La pannocchia"
         }, {
           id: "sNPnbI1arSE",
           thumbnail: "https://img.youtube.com/vi/sNPnbI1arSE/hqdefault.jpg",
@@ -88,25 +100,24 @@ export default class HomeScreen extends React.Component {
         }, {
           id: "VOgFZfRVaww",
           thumbnail: "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
-          content: "La pannocchia (detta anche canocchia o cicala di mare) è un crostaceo che vive sui fondali sabbiosi. Sulla parte terminale del corpo, detta telson, ha due macchie a forma di occhio, utili per spaventare i predatori. Ha due potenti chele che usa ome dei martelli: con le chele è in grado di spaccare i gusci dei molluschi bivalvi!!",
-          title: "La pannocchia"
+          content: "I denti degli squali e dei loro parenti, le razze, sono molto vari. Ci sono specie con denti aguzzi, adatti ad addentare prede dal corpo molle. In altre specie, i denti sono più simili a piastre, più o meno fuse fra di loro, adatte a triturare organismi dal corpo duro, spesso dotati di un guscio. Infine i filtratori, come lo squalo elefante e lo squalo balena, hanno denti ridottissimi.",
+          title: "Denti"
         }],
         gallerySection: [
           {
             id: '1',
-            img: require('../assets/images/tooth.jpg')
+            img: require('../assets/images/piastremod.png'),
+            itemTitle: 'Piastre Aquila di Mare: piastre per triturare prede con corpi duri'
           },
           {
             id: '2',
-            img: require('../assets/images/tooth.jpg')
+            img: require('../assets/images/granchiomod.png'),
+            itemTitle: 'Granchio: parte della dieta della pannocchia'
           },
           {
             id: '3',
-            img: require('../assets/images/tooth.jpg')
-          },
-          {
-            id: '4',
-            img: require('../assets/images/tooth.jpg')
+            img: require('../assets/images/verme.png'),
+            itemTitle: 'Verme: come il granchio, parte della dieta della pannocchia'
           },
         ],
       }
