@@ -11,6 +11,8 @@ import Carousel from 'react-native-snap-carousel';
 import { FontStyleEval } from './FontSizeEval';
 import { ModalHeader, ExpandingCard, Card } from './common/'
 import { ScrollView } from 'react-native-gesture-handler';
+import GLOBALS from '../constants/GlobalVars'
+
 
 export default class ReadingCarousel extends Component {
 
@@ -60,8 +62,8 @@ export default class ReadingCarousel extends Component {
     console.log("rendering,", index, item)
     return (
       <View style={{ 
-        height: '70%',
-        marginTop: '20%' }}>
+        height: '85%',
+      }}>
         <Card>
           <View style={{ borderBottomColor: '#053FA9', borderBottomWidth: 1 }}>
             {this.getTitleSized(item.title)}
@@ -85,9 +87,10 @@ export default class ReadingCarousel extends Component {
           data={this.state.cardsContent}
           renderItem={this._renderItem.bind(this)}
           onSnapToItem={this.handleSnapToItem.bind(this)}
-          sliderWidth={360}
-          itemWidth={256}
+          sliderWidth={GLOBALS.DEVICE_WIDTH}
+          itemWidth={320}
           layout={'default'}
+          
           firstItem={0}
         />
       </View>
@@ -97,8 +100,7 @@ export default class ReadingCarousel extends Component {
 
 const styles = {
   rootView: {
-    height: '100%', 
-    marginTop: 15,
+    height: '100%'
   },
   cardStyle: {
     width: '100%', 

@@ -18,7 +18,7 @@ const Close = (props) => {
             >
                 <Image 
                     source={props.imgPath}
-                    style={{ width: 20, height: 20 }}
+                    style={{ width: 23, height: 23, marginRight: 10, }}
                 />
             </TouchableOpacity>
         </View>
@@ -28,8 +28,7 @@ const Close = (props) => {
 const styles = {
     viewStyle: {
         width: '100%',
-        height: 60,
-        top: 15,
+        height: 80,
         position: 'absolute',
         zIndex: 1,
         alignItems: 'flex-end',

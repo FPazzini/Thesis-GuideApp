@@ -54,15 +54,16 @@ const DetailsReading = ({ imgPath, title, readings }) => {
                 resizeMode='cover'
                 source={imgPath}
                 blurRadius={3}>
-                <View style={{ width: GLOBALS.DEVICE_WIDTH, height: GLOBALS.DEVICE_HEIGHT, backgroundColor: 'rgba(0,0,0,.67)' }}>
-                    <View style={{ padding: 10, zIndex: 1, width: GLOBALS.DEVICE_WIDTH, alignItems: 'center' }}>
+                <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,.67)' }}>
+                    <View style={{ flex: 1, padding: 10, zIndex: 1, alignItems: 'center' }}>
                         {getTitleSized(title)}
                     </View>
-                    <View style={{ width: '100%', height: GLOBALS.DEVICE_HEIGHT-GLOBALS.TAB_BAR_HEIGHT, marginBottom: '5%', zIndex: 1, alignItems: 'center'}}>
+                    <View style={{ flex: 6, zIndex: 1, alignItems: 'center'}}>
                         <ReadingCarousel 
                             cardsContent={readings}
                         />
                     </View>
+                    <View style={{flex: 1 }}></View>
                 </View>
             </ImageBackground>
         </View>
