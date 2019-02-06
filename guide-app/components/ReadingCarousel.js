@@ -26,6 +26,7 @@ export default class ReadingCarousel extends Component {
     this.state = {
       cardsContent: props.cardsContent
     }
+    console.log("Cards Content: "+this.state.cardsContent)
   }
 
   handleSnapToItem(index){
@@ -58,22 +59,21 @@ export default class ReadingCarousel extends Component {
     )
   }
 
-  _renderItem = ( {item, index} ) => {
-    console.log("rendering,", index, item)
+  _renderItem = ( item ) => {
+    var mItem = item.item
+    console.log("Item: "+mItem)
     return (
       <View style={{ 
         height: '85%',
       }}>
         <Card>
           <View style={{ borderBottomColor: '#053FA9', borderBottomWidth: 1 }}>
-            {this.getTitleSized(item.title)}
+            {this.getTitleSized(mItem.title)}
           </View>
-          <ScrollView>
             <View style={{ flex: 1 }}>
               
-              {this.getContentSized(item.content)}
+              {this.getContentSized(mItem.content)}
             </View>
-          </ScrollView>
         </Card>
       </View>
     );
@@ -85,8 +85,7 @@ export default class ReadingCarousel extends Component {
         <Carousel
           ref={ (c) => { this._carousel = c; } }
           data={this.state.cardsContent}
-          renderItem={this._renderItem.bind(this)}
-          onSnapToItem={this.handleSnapToItem.bind(this)}
+          renderItem={ dat => this._renderItem(dat)}
           sliderWidth={GLOBALS.DEVICE_WIDTH}
           itemWidth={320}
           layout={'default'}

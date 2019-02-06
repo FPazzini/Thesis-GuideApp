@@ -308,8 +308,8 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  _renderItem = ( {item, index} ) => {
-    console.log("rendering,", index, item)
+  _renderItem = ( inf ) => {
+    var item = inf.item
     return (
       <View style={{ height: '90%', alignItems: 'center' }}>
         <CardsPath item={item} infoButtonClicked={card => this.infoClicked(card)} />
@@ -342,7 +342,7 @@ export default class HomeScreen extends React.Component {
           <Carousel
             ref={ (c) => { this._carousel = c; } }
             data={this.state.pathElements}
-            renderItem={this._renderItem.bind(this)}
+            renderItem={ inf => this._renderItem(inf) }
             sliderWidth={sliderWidth}
             itemWidth={itemWidth/2}
             layout={'default'}
